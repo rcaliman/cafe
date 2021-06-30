@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<section>
+    <div class='container'>
+        <div class='row'>
+            <div class='col'>
+                <a class='btn btn-dark botao_grande' href='/form_cafe'>
+                    inserir novo café
+                </a>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col'>
+                <table class="table table-light table-hover">
+                    <thead class='table-dark'>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Peso Comprado</th>
+                            <th>Data da Compra</th>
+                            <th>Origem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cafe in cafes %}
+                        <tr>
+                            <td>{{cafe[1][:30]}}</td>
+                            <td>{{cafe[2]}}</td>
+                            <td>{{cafe[3]}}</td>
+                            <td>{{cafe[4][:30]}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<section>
+    <form name='login' action='/logar' method='post'>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 offset-md-4">
+                    <div class="login-form bg-dark mt-4 p-4">
+                            <div class="col-12">
+                                <input type="text" name="usuario" class="form-control rounded-0 border-0" placeholder="usuario">
+                            </div>
+                            <div class="col-12 mt-2">
+                                <input type="password" name="senha" class="form-control rounded-0 border-0" placeholder="senha">
+                            </div>
+                            <div class="d-grid gap-2 mt-2">
+                                <button class="btn btn-outline-light">entrar</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+{% endblock %}

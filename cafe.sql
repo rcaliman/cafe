@@ -1,0 +1,25 @@
+DROP TABLE IF EXISTS cafe;
+DROP TABLE IF EXISTS torra;
+
+
+CREATE TABLE cafe (
+id INTEGER AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY,
+descrição TINYTEXT NOT NULL,
+quantidade_comprada FLOAT NOT NULL,
+data_compra DATE NOT NULL,
+origem TINYTEXT NOT NULL);
+
+CREATE TABLE torra (
+id INTEGER AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY,
+id_cafe INTEGER NOT NULL,
+temp_inicial FLOAT NOT NULL,
+temp_final FLOAT NOT NULL,
+temp_piso FLOAT NOT NULL,
+temp_minutos JSON NOT NULL,
+fluxo_ar FLOAT NOT NULL,
+velocidade_tambor FLOAT NOT NULL,
+peso FLOAT NOT NULL,
+data_torra INT NOT NULL);
+
+ALTER TABLE torra ADD CONSTRAINT torra_id_cafe_cafe_id FOREIGN KEY (id_cafe) REFERENCES cafe(id);
+

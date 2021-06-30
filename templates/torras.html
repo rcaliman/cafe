@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<section>
+    <div class='container'>
+        <div class='row'>
+            <div class='col'>
+                <a class='btn btn-dark botao_grande' href='/form_torra'>
+                    inserir nova torra
+                </a>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col'>
+                <table class='table'>
+                    <thead class='table-dark'>
+                        <tr>
+                            <th>
+                                temperatura inicial
+                            </th>
+                            <th>
+                                temperatura final
+                            </th>
+                            <th>
+                                temperatura piso
+                            </th>
+                            <th>
+                                fluxo de ar
+                            </th>
+                            <th>
+                                velocidade do tambor
+                            </th>
+                            <th>
+                                peso
+                            </th>
+                            <th>
+                                data da torra
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class='table-light'>
+                        <tr>
+                            {% for torra in torras%}
+                            <td>
+                                {{torra[2]}}
+                            </td>
+                            <td>
+                                {{torra[3]}}
+                            </td>
+                            <td>
+                                {{torra[4]}}
+                            </td>
+                            <td>
+                                {{torra[6]}}
+                            </td>
+                            <td>
+                                {{torra[7]}}
+                            </td>
+                            <td>
+                                {{torra[8]}}
+                            </td>
+                            <td>
+                                {{torra[9]}}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

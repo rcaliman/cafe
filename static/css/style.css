@@ -1,0 +1,50 @@
+.container{
+    margin-top: 1em;
+}
+.material-icons.md-light {
+    color: rgba(255, 255, 255, 1); 
+}
+.btn imagem {
+    display:flex;
+    align-items: center;
+}
+.col{
+    display: flex;
+    justify-content: center;
+}
+.botao_grande{
+    width: 90%;
+}
+.botao_grande:hover{
+    background-color: gray;
+}
+#tempgrid1{
+    width: 4em !important;
+}
+#inputFormRow input{
+    width:5em;
+    margin-bottom: 10px;
+}
+#addRow{
+    margin-bottom: 10px;
+}
+#removeRow{
+    width:5em;
+    margin-left: 10px;
+}
+.form-floating{
+    margin:1em 0;
+    width: 30em;
+    margin: 1em auto;
+}
+label{
+    color: coral;
+}
+.fit_content{
+    height:fit-content;
+    width: fit-content;
+}
+table{
+    margin-top: 1em;
+    width: 100%;
+}

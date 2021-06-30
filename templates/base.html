@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang='pt-br'>
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="/static/css/reset.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class='btn btn-dark btn-sm' href='/'>
+                <imagem>
+                    <span class="material-icons md-light">
+                        local_cafe
+                    </span>
+                </imagem>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    {% if session['usuario'] %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cafes">cafés</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/torras">torras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logoff">logoff</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block body %}
+
+    {% endblock %}
+
+</body>
+
+</html>
