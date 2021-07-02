@@ -85,7 +85,8 @@ def torra():
             id = request.values.get('id')
             torra = select_torra(id)
             grid_torra = json_torra(torra)
-            plot = grafico(grid_torra)
+            path_grafico = 'static/img/grafico.png'
+            plot = grafico(grid_torra, path_grafico)
             return render_template(
                 'torra.html',
                 torra = torra,

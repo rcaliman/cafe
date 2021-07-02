@@ -4,6 +4,7 @@ from parametros import parametros
 from flask import session
 from werkzeug.datastructures import ImmutableMultiDict
 import seaborn as sns
+import pandas as pd
 
 class UsaBD:
     def __init__(self, config):
@@ -49,14 +50,18 @@ def monta_temp_json(request_form):
 def json_para_dic(js):
     return json.loads(js)
     
-def grafico(dic):
+def grafico(dic,path_grafico):
     count = 1
     x = []
-    y = [] 
+    y = []
     for v in dic.values():
         y.append(int(v[0]))
         x.append(count)
         count += 1
-    grafico = sns.lineplot(x=x, y=y)
-    grafico.figure.savefig('static/img/grafico.png')
+    dic = {'temperatura':y,'minutos':x}
+    df = pd.DataFrame.from_dict(dic)
+    sns.set_style("darkgrid")
+    sns.set(rc={'figure.figsize':(12,6)})
+    grafico = sns.lineplot(data=df,x="minutos", y="temperatura", color='red', linewidth=1.8)
+    grafico.figure.savefig(path_grafico)
     

@@ -51,3 +51,9 @@ table{
 .torra table{
     margin: 10px 10px;
 }
+.grafico {
+    margin: 0 auto;
+    display: block;
+    background-color: red;
+    align-self: center;
+}
