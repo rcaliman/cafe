@@ -36,7 +36,7 @@ class Cafe:
 
 def select_cafes():
     with UsaBD(parametros) as cursor:
-        _SQL = """select * from cafe order by data_compra desc;"""
+        _SQL = """select * from cafe order by data_compra desc, id desc;"""
         cursor.execute(_SQL)
         cafes = cursor.fetchall()
     return cafes

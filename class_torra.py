@@ -2,7 +2,7 @@ from parametros import parametros
 from tools import UsaBD, json_para_dic
 
 class Torra:
-    def __init__(self, cafe, temp_inicial, temp_final, piso, temp_json, fluxo_ar, velocidade_tambor, peso, data):
+    def __init__(self, cafe, temp_inicial, temp_final, piso, temp_json, fluxo_ar, velocidade_tambor, peso, data, observacoes):
         self.cafe = cafe
         self.temp_inicial = temp_inicial
         self.temp_final = temp_final
@@ -12,6 +12,7 @@ class Torra:
         self.velocidade_tambor = velocidade_tambor
         self.peso = peso
         self.data = data
+        self.observacoes = observacoes
         
     def __str__(self):
         dic = {
@@ -23,7 +24,8 @@ class Torra:
             'fluxo de ar': self.fluxo_ar,
             'velocidade do tambor': self.velocidade_tambor,
             'peso': self.peso,
-            'data': self.data}
+            'data': self.data,
+            'observacoes': self.observacoes}
         return str(dic)
     
     def insere_banco(self):
@@ -37,7 +39,8 @@ class Torra:
                 fluxo_ar,
                 velocidade_tambor,
                 peso,
-                data_torra
+                data_torra,
+                observacoes
                 )values(
                     '{self.cafe}',
                     '{self.temp_inicial}',
@@ -47,13 +50,14 @@ class Torra:
                     '{self.fluxo_ar}',
                     '{self.velocidade_tambor}',
                     '{self.peso}',
-                    '{self.data}'
+                    '{self.data}',
+                    '{self.observacoes}'
                 );"""
             cursor.execute(_SQL)
             
 def select_torras():
     with UsaBD(parametros) as cursor:
-        _SQL = """select * from torra order by data_torra desc;"""
+        _SQL = """select * from torra order by data_torra desc, id desc;"""
         cursor.execute(_SQL)
         torras = cursor.fetchall()
     return torras

@@ -120,7 +120,8 @@ def insere_torra():
                     request.form['fluxo_ar'],
                     request.form['velocidade_tambor'],
                     request.form['peso'],
-                    request.form['data'])
+                    request.form['data'],
+                    request.form['observacoes'])
                 torra.insere_banco()
         return redirect('/torras',302)
     except:
