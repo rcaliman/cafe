@@ -36,14 +36,14 @@ class Cafe:
 
 def select_cafes():
     with UsaBD(parametros) as cursor:
-        _SQL = """select * from cafe;"""
+        _SQL = """select * from cafe order by data_compra desc;"""
         cursor.execute(_SQL)
         cafes = cursor.fetchall()
     return cafes
 
 def select_descricao_cafes():
     with UsaBD(parametros) as cursor:
-        _SQL= """select id, substring(descricao, 1, 50) from cafe;"""
+        _SQL= """select id, substring(descricao, 1, 50) from cafe order by data_compra desc;"""
         cursor.execute(_SQL)
         descricao_cafes = cursor.fetchall()
     return descricao_cafes

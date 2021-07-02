@@ -1,8 +1,9 @@
 import mysql.connector
 import json
-import parametros
+from parametros import parametros
 from flask import session
 from werkzeug.datastructures import ImmutableMultiDict
+import seaborn as sns
 
 class UsaBD:
     def __init__(self, config):
@@ -26,7 +27,7 @@ class Login:
         self.senha = senha
         
     def confere(self):
-        with UsaBD(parametros.parametros) as cursor:
+        with UsaBD(parametros) as cursor:
             SQL = f"""select usuario, senha from usuarios where
                 usuario='{self.usuario}' and senha='{self.senha}';"""
             cursor.execute(SQL)
@@ -44,5 +45,18 @@ def monta_temp_json(request_form):
         if 'tempgrid' in a:
             tempgrid[a] = b
     return json.dumps(tempgrid)
-        
+
+def json_para_dic(js):
+    return json.loads(js)
+    
+def grafico(dic):
+    count = 1
+    x = []
+    y = [] 
+    for v in dic.values():
+        y.append(int(v[0]))
+        x.append(count)
+        count += 1
+    grafico = sns.lineplot(x=x, y=y)
+    grafico.figure.savefig('static/img/grafico.png')
     

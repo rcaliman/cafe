@@ -1,5 +1,5 @@
 from parametros import parametros
-from tools import UsaBD
+from tools import UsaBD, json_para_dic
 
 class Torra:
     def __init__(self, cafe, temp_inicial, temp_final, piso, temp_json, fluxo_ar, velocidade_tambor, peso, data):
@@ -48,12 +48,26 @@ class Torra:
                     '{self.velocidade_tambor}',
                     '{self.peso}',
                     '{self.data}'
-                )"""
+                );"""
             cursor.execute(_SQL)
             
 def select_torras():
     with UsaBD(parametros) as cursor:
-        _SQL = """select * from torra;"""
+        _SQL = """select * from torra order by data_torra desc;"""
         cursor.execute(_SQL)
         torras = cursor.fetchall()
     return torras
+
+def select_torra(id):
+    with UsaBD(parametros) as cursor:
+        _SQL = f"""select * from torra where id = {id};"""
+        cursor.execute(_SQL)
+        torra = cursor.fetchall()
+    return torra
+
+
+def json_torra(query):
+    for item in query[0]:
+        if 'bytes' in str(type(item)):
+            dic = json_para_dic(item)
+    return dic

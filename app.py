@@ -1,10 +1,8 @@
 from flask import Flask, request, render_template, session, redirect
-from tools import Login, logado, monta_temp_json
+from tools import Login, logado, monta_temp_json, grafico
 from werkzeug.datastructures import ImmutableMultiDict
-from class_torra import Torra, select_torras
+from class_torra import Torra, select_torras, select_torra, json_torra
 from class_cafe import Cafe, select_cafes, select_descricao_cafes
-import tools as t
-import parametros
 
 app = Flask(__name__)
 
@@ -77,6 +75,23 @@ def torras():
                 'torras.html',
                 torras = select_torras(),
             )
+    except:
+        return form_login()
+    
+@app.route('/torra', methods=['GET','POST'])
+def torra():
+    try:
+        if logado():
+            id = request.values.get('id')
+            torra = select_torra(id)
+            grid_torra = json_torra(torra)
+            plot = grafico(grid_torra)
+            return render_template(
+                'torra.html',
+                torra = torra,
+                grid_torra = grid_torra,
+                plot = plot,
+    )
     except:
         return form_login()
     
