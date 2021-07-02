@@ -5,6 +5,7 @@ from flask import session
 from werkzeug.datastructures import ImmutableMultiDict
 import seaborn as sns
 import pandas as pd
+import matplotlib.pyplot as plt
 
 class UsaBD:
     def __init__(self, config):
@@ -64,4 +65,5 @@ def grafico(dic,path_grafico):
     sns.set(rc={'figure.figsize':(12,6)})
     grafico = sns.lineplot(data=df,x="minutos", y="temperatura", color='red', linewidth=1.8)
     grafico.figure.savefig(path_grafico)
+    plt.close()
     

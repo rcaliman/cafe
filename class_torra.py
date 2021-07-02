@@ -69,6 +69,10 @@ def select_torra(id):
         torra = cursor.fetchall()
     return torra
 
+def apagar_torra(id):
+    with UsaBD(parametros) as cursor:
+        _SQL = f"""delete from torra where id = {id};"""
+        cursor.execute(_SQL)
 
 def json_torra(query):
     for item in query[0]:
