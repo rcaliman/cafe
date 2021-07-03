@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, session, redirect
 from tools import Login, logado, monta_temp_json, grafico
 from werkzeug.datastructures import ImmutableMultiDict
 from class_torra import Torra, select_torras, select_torra, json_torra, apagar_torra
-from class_cafe import Cafe, select_cafes, select_descricao_cafes
+from class_cafe import Cafe, select_cafes, select_cafe, select_descricao_cafes, apagar_cafe
 
 app = Flask(__name__)
 
@@ -46,9 +46,18 @@ def cafes():
 def form_cafe():
     try:
         if logado():
-            return render_template(
-                'form_cafe.html',
-            )
+            if request.values.get('id'):
+                id = int(request.values.get('id'))
+                cafe = select_cafe(id)
+                return render_template(
+                    'form_cafe.html',
+                    id = id,
+                    cafe = cafe,
+                )
+            else:
+                return render_template(
+                    'form_cafe.html',
+                )
     except:
         return form_login()
 
@@ -64,6 +73,16 @@ def insere_cafe():
             )
         cafe.insere_banco()
         return redirect('/cafes',302)
+    except:
+        return form_login()
+
+@app.route('/apaga_cafe', methods=['GET','POST'])
+def apaga_cafe():
+    try:
+        if logado():
+            id = int(request.values.get('id'))
+            apagar_cafe(id)
+            return redirect('/cafes',302)
     except:
         return form_login()
 

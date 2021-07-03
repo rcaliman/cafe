@@ -61,3 +61,7 @@ table{
     color: red;
     text-decoration: underline;
 }
+.dropup{
+    display: block;
+    margin: 1em 0;
+}

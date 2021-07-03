@@ -19,6 +19,7 @@
                             <th>Peso Comprado</th>
                             <th>Data da Compra</th>
                             <th>Origem</th>
+                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +29,7 @@
                             <td>{{cafe[2]}}</td>
                             <td>{{cafe[3]}}</td>
                             <td>{{cafe[4][:30]}}</td>
+                            <td><a href="/form_cafe?id={{cafe[0]}}">editar</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

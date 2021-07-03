@@ -2,26 +2,63 @@
 
 {% block body %}
 <section>
-    <div class='container' style='display: flex; justify-content: center;'>
-        <form method='post' action='insere_cafe'>
+    <div class='container cafe' style='justify-content: center;'>
 
-            <div class="form-floating">
-                <textarea class='form-control' id='descricao' name='descricao'></textarea>
-                <label for='descricao'>descrição do café</label>
-            </div>
-            <div class="form-floating">
-                <input class='form-control fit_content' type='number' name='quantidade' id='quantidade'>
-                <label for='quantidade'>quantidade comprada</label>
-            </div>
-            <div class="form-floating">
-                <input class='form-control fit_content' type='date' name='data_compra' id='data_compra'>
-                <label for='data_compra'>data da compra </label>
-            </div>
-            <div class="form-floating">
-                <input class='form-control' type='text' name='origem' id='origem'>
-                <label for='origem'>origem</label>
-            </div>
-            <button class='btn btn-dark' type='submit'>salvar</button>
+
+        {% if id %}
+        <form method='post' action='atualiza_cafe'>
+        {% for valor in cafe %}
+        <input type='hidden' value='{{valor[0]}}'>
+        <div class="form-floating">
+            <textarea class='form-control' id='descricao' name='descricao'>{{ valor[1] }}</textarea>
+            <label for='descricao'>descrição do café</label>
+        </div>
+        <div class="form-floating">
+            <input value='{{valor[2]}}' class='form-control fit_content' type='number' name='quantidade'
+                id='quantidade'>
+            <label for='quantidade'>quantidade comprada</label>
+        </div>
+        <div class="form-floating">
+            <input value='{{ valor[3] }}' class='form-control fit_content' type='date' name='data_compra'
+                id='data_compra'>
+            <label for='data_compra'>data da compra </label>
+        </div>
+        <div class="form-floating">
+            <input value='{{ valor[4] }}' class='form-control' type='text' name='origem' id='origem'>
+            <label for='origem'>origem</label>
+        </div>
+        {% endfor %}
+        {% else %}
+        <form method='post' action='insere_cafe'>
+        <div class="form-floating">
+            <textarea class='form-control' id='descricao' name='descricao'></textarea>
+            <label for='descricao'>descrição do café</label>
+        </div>
+        <div class="form-floating">
+            <input class='form-control fit_content' type='number' name='quantidade' id='quantidade'>
+            <label for='quantidade'>quantidade comprada</label>
+        </div>
+        <div class="form-floating">
+            <input class='form-control fit_content' type='date' name='data_compra' id='data_compra'>
+            <label for='data_compra'>data da compra </label>
+        </div>
+        <div class="form-floating">
+            <input class='form-control' type='text' name='origem' id='origem'>
+            <label for='origem'>origem</label>
+        </div>
+        {% endif %}
+        <button style='margin: 0 auto; display: block;' class='btn btn-dark' type='submit'>salvar</button>
+        {% if id %}
+        <div class="btn-group dropup">
+            <button style='margin: 0 auto; display: block; margin-bottom: 1em;' type="button"
+                class="btn-sm btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                apagar
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item danger_hover" href="/apaga_cafe?id={{id}}">apagar</a></li>
+            </ul>
+        </div>
+        {% endif %}
         </form>
     </div>
 </section>

@@ -32,7 +32,10 @@ class Cafe:
                 );"""
             cursor.execute(_SQL)
         
-
+def apagar_cafe(id):
+    with UsaBD(parametros) as cursor:
+        _SQL = f"""delete from cafe where id={id};"""
+        cursor.execute(_SQL)
 
 def select_cafes():
     with UsaBD(parametros) as cursor:
@@ -41,10 +44,16 @@ def select_cafes():
         cafes = cursor.fetchall()
     return cafes
 
+def select_cafe(id):
+    with UsaBD(parametros) as cursor:
+        _SQL = f"""select * from cafe where id = {id};"""
+        cursor.execute(_SQL)
+        cafe = cursor.fetchall()
+    return cafe
+
 def select_descricao_cafes():
     with UsaBD(parametros) as cursor:
         _SQL= """select id, substring(descricao, 1, 50) from cafe order by data_compra desc;"""
         cursor.execute(_SQL)
         descricao_cafes = cursor.fetchall()
     return descricao_cafes
-        
