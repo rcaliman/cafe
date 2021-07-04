@@ -5,13 +5,8 @@
 <div class='container form_torra'>
     <form action="insere_torra" method='post'>
         <section>
-            <div class='form-floating'>
-                <select class='form-control' name='cafe' id='cafe'>
-                    {% for descricao_cafe in descricao_cafes%}
-                    <option>selecione um café</option>
-                    <option value={{descricao_cafe[0]}}>{{descricao_cafe[1]}}</option>
-                    {% endfor %}
-                </select>
+            <div class='form-floating'>                    
+                {{select_cafes|safe}}
                 <label for='cafe'>descrição do café</label>
             </div>
             <div class='form-floating'>

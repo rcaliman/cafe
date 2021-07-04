@@ -65,7 +65,12 @@
                     </tr>
                     <tr>
                         <td colspan=2>
-                            observações: {{valor[10]}}
+                            observações sobre a torra: {{valor[10] | replace('None','')}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan=2>
+                            café: {{ descricao_cafe}}
                         </td>
                     </tr>
 
@@ -95,6 +100,16 @@
 <footer>
     <div class='container'>
         <div class='row'>
+            <div class='col'>
+                <div class="btn-group dropup">
+                    <button style='margin-bottom: 1em;'type="button" class="btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      editar
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/edita_torra?id={{id}}">editar</a></li>
+                    </ul>
+                  </div>
+            </div>
             <div class='col'>
                 <div class="btn-group dropup">
                     <button style='margin-bottom: 1em;'type="button" class="btn-sm btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

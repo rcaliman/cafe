@@ -51,9 +51,31 @@ def select_cafe(id):
         cafe = cursor.fetchall()
     return cafe
 
-def select_descricao_cafes():
+def busca_descricao_cafe(id):
     with UsaBD(parametros) as cursor:
-        _SQL= """select id, substring(descricao, 1, 50) from cafe order by data_compra desc;"""
+        _SQL = f"""select descricao from cafe where id = {id};"""
+        cursor.execute(_SQL)
+        descricao = cursor.fetchall()
+    return descricao[0][0]
+
+def select_descricao_cafes(id_cafe):
+    with UsaBD(parametros) as cursor:
+        _SQL= f"""select id, substring(descricao, 1, 50) from cafe where id <> {id_cafe} order by data_compra desc;"""
         cursor.execute(_SQL)
         descricao_cafes = cursor.fetchall()
-    return descricao_cafes
+        if int(id_cafe) > 0:
+            _SQL = f"""select id, substring(descricao, 1, 50) from cafe where id={int(id_cafe)}"""
+            cursor.execute(_SQL)
+            descricao_cafe_selecionado = cursor.fetchall()
+            descricao = tuple(descricao_cafe_selecionado + descricao_cafes)
+            select = """<select class="form-control" name="cafe" id="cafe">"""
+        else:
+            descricao = tuple(descricao_cafes)
+            select = """<select class="form-control" name="cafe" id="cafe"><option>selecione um café</option>"""
+        
+        input = ''
+        for cafe in descricao:
+            input = input + f"""<option value={cafe[0]}>{cafe[1]}</option>"""
+        
+        select = select + input + "</select>"
+        return select
