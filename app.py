@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 app.secret_key = 'frase secretissima'
 
-@app.route('/')
+@app.route('/') # pagina inicial
 def inicio():
     try:
         usuario = session['usuario']
@@ -17,11 +17,11 @@ def inicio():
     except:
         return redirect('/form_login',302)
 
-@app.route('/form_login')
+@app.route('/form_login') # formulário de login
 def form_login():
     return render_template('form_login.html')
 
-@app.route('/logar', methods=['POST'])
+@app.route('/logar', methods=['POST']) # autenticar usuario e setar sessão
 def logar():
     usuario = request.form['usuario']
     senha = request.form['senha']
@@ -31,7 +31,7 @@ def logar():
     else:
         return form_login()
     
-@app.route('/cafes', methods=['GET','POST'])
+@app.route('/cafes', methods=['GET','POST']) # mostra a lista de cafés comprados
 def cafes():
     try:
         if logado():
@@ -42,7 +42,7 @@ def cafes():
     except:
         return form_login()
     
-@app.route('/form_cafe')
+@app.route('/form_cafe') #formulario para fazer o cadastro dos cafés
 def form_cafe():
     try:
         if logado():
@@ -61,32 +61,53 @@ def form_cafe():
     except:
         return form_login()
 
-@app.route('/insere_cafe',methods=['GET','POST'])
+@app.route('/insere_cafe',methods=['GET','POST']) # action do formulario de cadastro de cafés
 def insere_cafe():
     try:
-        if request.form:
-            cafe = Cafe(
-                request.form['descricao'],
-                request.form['quantidade'],
-                request.form['data_compra'],
-                request.form['origem'],
-            )
-        cafe.insere_banco()
+        if logado():
+            if request.form:
+                cafe = Cafe(
+                    None,
+                    request.form['descricao'],
+                    request.form['quantidade'],
+                    request.form['data_compra'],
+                    request.form['origem'],
+                    request.form['estoque']
+                )
+                cafe.insere_banco()
+        return redirect('/cafes',302)
+    except:
+        return form_login()
+    
+@app.route('/update_cafe',methods=['GET','POST']) # action do formulário de atualizacao de cafés
+def update_cafe():
+    try:
+        if logado():
+            if request.form:
+                cafe = Cafe(
+                    request.form['id'],
+                    request.form['descricao'],
+                    request.form['quantidade'],
+                    request.form['data_compra'],
+                    request.form['origem'],
+                    request.form['estoque']
+                )
+                cafe.update_cafe()
         return redirect('/cafes',302)
     except:
         return form_login()
 
-@app.route('/apaga_cafe', methods=['GET','POST'])
+@app.route('/apaga_cafe', methods=['GET','POST']) # action para apagar um café do banco
 def apaga_cafe():
     try:
         if logado():
             id = int(request.values.get('id'))
             apagar_cafe(id)
-            return redirect('/cafes',302)
+        return redirect('/cafes',302)
     except:
         return form_login()
 
-@app.route('/torras', methods=['GET','POST'])
+@app.route('/torras', methods=['GET','POST']) # tabela com torras já feitas
 def torras():
     try:
         if logado():
@@ -97,29 +118,29 @@ def torras():
     except:
         return form_login()
     
-@app.route('/torra', methods=['GET','POST'])
+@app.route('/torra', methods=['GET','POST']) # tabela com os dados de uma torra específica
 def torra():
-#    try:
-    if logado():
-        id = request.values.get('id')
-        torra = select_torra(id)
-        id_cafe = torra[0][1]
-        descricao_cafe = busca_descricao_cafe(id_cafe) 
-        grid_torra = json_torra(torra)
-        path_grafico = 'static/img/grafico.png'
-        plot = grafico(grid_torra, path_grafico)
-        return render_template(
-            'torra.html',
-            torra = torra,
-            grid_torra = grid_torra,
-            plot = plot,
-            id = id,
-            descricao_cafe = descricao_cafe,
-    )
-#    except:
-#        return form_login()
+    try:
+        if logado():
+            id = request.values.get('id')
+            torra = select_torra(id)
+            id_cafe = torra[0][1]
+            descricao_cafe = busca_descricao_cafe(id_cafe) 
+            grid_torra = json_torra(torra)
+            path_grafico = 'static/img/grafico.png'
+            plot = grafico(grid_torra, path_grafico)
+            return render_template(
+                'torra.html',
+                torra = torra,
+                grid_torra = grid_torra,
+                plot = plot,
+                id = id,
+                descricao_cafe = descricao_cafe,
+        )
+    except:
+        return form_login()
     
-@app.route('/form_torra')
+@app.route('/form_torra') # formulário para cadastrar uma torra
 def form_torra():
     try:
         if logado():
@@ -129,7 +150,7 @@ def form_torra():
     except:
         return form_login()
 
-@app.route('/insere_torra', methods=['GET','POST'])
+@app.route('/insere_torra', methods=['GET','POST']) # action do formulário de inserir nova torra
 def insere_torra():
     try:
         if logado():
@@ -147,12 +168,12 @@ def insere_torra():
                     request.form['data'],
                     request.form['observacoes'])
                 torra.insere_banco()
-
+                
         return redirect('/torras',302)
     except:
             return form_login()
 
-@app.route('/edita_torra')
+@app.route('/edita_torra') # formulário para editar uma torra já feita
 def edita_torra():
     try:
         if logado():
@@ -169,7 +190,7 @@ def edita_torra():
     except:
         return form_login()
     
-@app.route('/update_torra', methods=['GET','POST'])
+@app.route('/update_torra', methods=['GET','POST']) # action para atualizar os dados de uma torra
 def update_torra():
     try:
         if logado():
@@ -192,7 +213,7 @@ def update_torra():
     except:
             return form_login()
 
-@app.route('/apaga_torra', methods=['GET','POST'])
+@app.route('/apaga_torra', methods=['GET','POST']) # action para apagar uma torra
 def apaga_torra():
     try:
         if logado():
@@ -202,7 +223,7 @@ def apaga_torra():
     except:
         return form_login()
 
-@app.route('/logoff')
+@app.route('/logoff') # sair do usuário logado
 def logoff():
     session.pop('usuario', None)
     return redirect('/',302)

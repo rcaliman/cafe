@@ -65,3 +65,20 @@ table{
     display: block;
     margin: 1em 0;
 }
+.link_info{
+    color: #000;
+    text-decoration: underline;
+}
+.link_info:hover{
+    color: #000;
+    text-decoration: underline;
+    font-style:italic;
+}
+.form-check-label{
+    color: #000;
+    font-size: 0.9em;
+    opacity: .65;
+}
+.semestoque{
+    opacity: 40%;
+}

@@ -24,11 +24,11 @@
                     </thead>
                     <tbody>
                         {% for cafe in cafes %}
-                        <tr>
-                            <td>{{cafe[1][:30]}}</td>
+                        <tr {% if cafe[5] == 0%}class='semestoque'{% endif %}>
+                            <td><a href=# title='{{cafe[1]}}' class='link_info'>{{cafe[1][:20]}}</a></td>
                             <td>{{cafe[2]}}</td>
                             <td>{{cafe[3]}}</td>
-                            <td>{{cafe[4][:30]}}</td>
+                            <td><a href=# title='{{cafe[4]}}' class='link_info'>{{cafe[4][:20]}}</a></td>
                             <td><a href="/form_cafe?id={{cafe[0]}}">editar</a></td>
                         </tr>
                         {% endfor %}

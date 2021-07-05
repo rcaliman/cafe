@@ -2,18 +2,22 @@ from tools import UsaBD
 from parametros import parametros
 
 class Cafe:
-    def __init__(self, descricao, quantidade_comprada, data_compra, origem):
+    def __init__(self, id=None, descricao=None, 
+                 quantidade_comprada=None, data_compra=None, origem=None, estoque=None):
+        self.id = id
         self.descricao = descricao
         self.quantidade_comprada = quantidade_comprada
         self.data_compra = data_compra
         self.origem = origem
+        self.estoque = estoque
         
     def __str__(self):
         dic = {
             'descrição': self.descricao,
             'quantidade comprada': self.quantidade_comprada,
             'data da compra': self.data_compra,
-            'origem': self.origem
+            'origem': self.origem,
+            'estoque': self.estoque
         }
         return str(dic)
     
@@ -23,13 +27,28 @@ class Cafe:
                 descricao,
                 quantidade_comprada,
                 data_compra,
-                origem
+                origem,
+                estoque
                 ) values (
                     '{self.descricao}',
                     '{self.quantidade_comprada}',
                     '{self.data_compra}',
-                    '{self.origem}'
+                    '{self.origem}',
+                    {self.estoque}
                 );"""
+            _SQL = _SQL.replace("''","NULL")
+            cursor.execute(_SQL)
+            
+    def update_cafe(self):
+        with UsaBD(parametros) as cursor:
+            _SQL = f"""update cafe set
+                descricao = '{self.descricao}',
+                quantidade_comprada = '{self.quantidade_comprada}',
+                data_compra = '{self.data_compra}',
+                origem = '{self.origem}',
+                estoque = {self.estoque}
+                where id = {self.id};"""
+            _SQL = _SQL.replace("''","NULL")
             cursor.execute(_SQL)
         
 def apagar_cafe(id):
@@ -60,7 +79,7 @@ def busca_descricao_cafe(id):
 
 def select_descricao_cafes(id_cafe):
     with UsaBD(parametros) as cursor:
-        _SQL= f"""select id, substring(descricao, 1, 50) from cafe where id <> {id_cafe} order by data_compra desc;"""
+        _SQL= f"""select id, substring(descricao, 1, 50) from cafe where id <> {id_cafe} and estoque = 1 order by data_compra desc;"""
         cursor.execute(_SQL)
         descricao_cafes = cursor.fetchall()
         if int(id_cafe) > 0:
