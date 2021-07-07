@@ -1,8 +1,10 @@
 from flask import Flask, request, render_template, session, redirect
 from tools import Login, logado, monta_temp_json, grafico
 from werkzeug.datastructures import ImmutableMultiDict
-from class_torra import Torra, select_torras, select_torra, json_torra, apagar_torra, edit_gridform
+from class_torra import Torra, select_torras, select_torra, apagar_torra, edit_gridform, json_torras, grafico_torras
 from class_cafe import Cafe, select_cafes, select_cafe, select_descricao_cafes, apagar_cafe, busca_descricao_cafe
+import json
+import random
 
 app = Flask(__name__)
 
@@ -126,9 +128,10 @@ def torra():
             torra = select_torra(id)
             id_cafe = torra[0][1]
             descricao_cafe = busca_descricao_cafe(id_cafe) 
-            grid_torra = json_torra(torra)
+            grid_torra = json.loads(json_torras(id)[0][0])
             path_grafico = 'static/img/grafico.png'
-            plot = grafico(grid_torra, path_grafico)
+            plot = grafico_torras(json_torras(id),path_grafico, id)
+            randomico = random.randrange(1,1000)
             return render_template(
                 'torra.html',
                 torra = torra,
@@ -136,6 +139,7 @@ def torra():
                 plot = plot,
                 id = id,
                 descricao_cafe = descricao_cafe,
+                randomico = randomico,
         )
     except:
         return form_login()
@@ -212,6 +216,32 @@ def update_torra():
         return redirect(url, 302)
     except:
             return form_login()
+
+@app.route('/compara_torras', methods=['GET','POST']) # compara grafico de torras
+def compara_torras():
+    try:
+        if logado():
+            if request.form:
+                form = request.form
+                ids = []
+                for i in form:
+                    ids.append(int(i))
+                grid_torras = json_torras(ids)
+                print(grid_torras)
+                path_grafico = 'static/img/graficocomparativo.png'
+                grafico = grafico_torras(grid_torras, path_grafico, ids)
+                randomico = random.randrange(1,1000)  
+                return render_template('compara_torras.html',
+                                grafico = grafico,
+                                ids = ids,
+                                randomico = random.randrange(1,1000))            
+            return render_template(
+                   'compara_torras.html',
+                   torras = select_torras(),
+            )
+    except:
+        return form_login()
+    
 
 @app.route('/apaga_torra', methods=['GET','POST']) # action para apagar uma torra
 def apaga_torra():

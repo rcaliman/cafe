@@ -40,22 +40,12 @@
 label{
     color: coral;
 }
-.fit_content{
-    height:fit-content;
-    width: fit-content;
-}
 table{
     margin-top: 1em;
     width: 100%;
 }
 .torra table{
     margin: 10px 10px;
-}
-.grafico {
-    margin: 0 auto;
-    display: block;
-    background-color: #dc3d45;
-    align-self: center;
 }
 .danger_hover:hover{
     color: red;

@@ -13,64 +13,74 @@
         <div class='row'>
             <div class='col'>
                 <table class='table'>
-                    <thead class='table-dark'>
-                        <tr>
-                            <th>
-                                temperatura inicial
-                            </th>
-                            <th>
-                                temperatura final
-                            </th>
-                            <th>
-                                temperatura piso
-                            </th>
-                            <th>
-                                fluxo de ar
-                            </th>
-                            <th>
-                                velocidade do tambor
-                            </th>
-                            <th>
-                                peso
-                            </th>
-                            <th>
-                                data da torra
-                            </th>
-                            <th>
-                                &nbsp;
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class='table-light'>
-                        <tr>
-                            {% for torra in torras%}
-                            <td>
-                                {{torra[2]}}
-                            </td>
-                            <td>
-                                {{torra[3]}}
-                            </td>
-                            <td>
-                                {{torra[4]}}
-                            </td>
-                            <td>
-                                {{torra[6]}}
-                            </td>
-                            <td>
-                                {{torra[7]}}
-                            </td>
-                            <td>
-                                {{torra[8]}}
-                            </td>
-                            <td>
-                                {{torra[9]}}
-                            </td>
-                            <td>
-                                <a href='/torra?id={{torra[0]}}'>abrir</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
+                    <form name='torras' method='post' action='/compara_torras'>
+                        <thead class='table-dark'>
+                            <tr>
+                                <th>
+                                    temperatura inicial
+                                </th>
+                                <th>
+                                    temperatura final
+                                </th>
+                                <th>
+                                    temperatura piso
+                                </th>
+                                <th>
+                                    fluxo de ar
+                                </th>
+                                <th>
+                                    velocidade do tambor
+                                </th>
+                                <th>
+                                    peso
+                                </th>
+                                <th>
+                                    data da torra
+                                </th>
+                                <th>
+                                    comparar
+                                </th>
+                                <th>
+                                    &nbsp;
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class='table-light'>
+                            <tr>
+                                {% for torra in torras%}
+                                <td>
+                                    {{torra[2]}}
+                                </td>
+                                <td>
+                                    {{torra[3]}}
+                                </td>
+                                <td>
+                                    {{torra[4]}}
+                                </td>
+                                <td>
+                                    {{torra[6]}}
+                                </td>
+                                <td>
+                                    {{torra[7]}}
+                                </td>
+                                <td>
+                                    {{torra[8]}}
+                                </td>
+                                <td>
+                                    {{torra[9]}}
+                                </td>
+                                <td class='text-center'>
+                                    <input name='{{torra[0]}}' class="form-check-input" type="checkbox" value="{{torra[0]}}"
+                                        id="flexCheckDefault">
+                                </td>
+                                <td>
+                                    <a href='/torra?id={{torra[0]}}'>abrir</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tr><td colspan=9 class='text-center'><button class='btn btn-success' type='submit'>comparar torras</button></td></tr>
+                    </form>
                 </table>
             </div>
         </div>

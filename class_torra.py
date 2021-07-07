@@ -1,5 +1,7 @@
 from parametros import parametros
 from tools import UsaBD, json_para_dic
+import matplotlib.pyplot as plt
+import json
 
 class Torra:
     def __init__(self, id=None, cafe=None, temp_inicial=None, temp_final=None, piso=None, temp_json=None,
@@ -94,16 +96,44 @@ def apagar_torra(id):
         _SQL = f"""delete from torra where id = {id};"""
         cursor.execute(_SQL)
 
-def json_torra(query):
-    for item in query[0]:
-        if 'bytes' in str(type(item)):
-            dic = json_para_dic(item)
-    return dic
 
+def json_torras(ids):
+    ids = str(ids).replace('[','')
+    ids = ids.replace(']','')
+    with UsaBD(parametros) as cursor:
+        _SQL = f"""select temp_minutos from torra where id in ({ids});"""
+        cursor.execute(_SQL)
+        json_torras = cursor.fetchall()
+    return json_torras
+
+def grafico_torras(json_torras, path_grafico, ids):
+    plt.rcParams['figure.figsize'] = (13,6.5)
+    axes = plt.gca()
+    ids = list(ids)
+    axes.yaxis.grid(b=True, color='black', alpha=0.3, linestyle='-.', linewidth=1,)
+    tempomaximo = 0
+    for json_torra in json_torras:
+        for json_temperaturas in json_torra:
+            dict_temperaturas = json.loads(json_temperaturas).values()
+            lista_temperaturas = []
+            for i in dict_temperaturas:
+                if len(dict_temperaturas) > tempomaximo:
+                    tempomaximo = len(dict_temperaturas)
+                i[0]= float(i[0])
+                lista_temperaturas.append(i[0])
+            sticks = list(range(0,tempomaximo))
+            plt.xticks(sticks)
+            plt.style.use('seaborn-darkgrid')
+            plt.xticks(sticks)
+            plt.xlabel('minutos')
+            plt.ylabel('temperatura')
+            plt.plot(lista_temperaturas, linewidth=2, label=ids.pop(0))
+            plt.legend()
+            plt.savefig(path_grafico)
+    plt.close()
+            
 def edit_gridform(id):
-
     tempgrid = json_torra(select_torra(id))
-
     input_grid = """
                     <section>
                         <div class='row justify-content-center' style='margin: 1em 0;'>
