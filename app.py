@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, session, redirect
-from tools import Login, logado, monta_temp_json, grafico
+from tools import Login, logado, monta_temp_json
 from werkzeug.datastructures import ImmutableMultiDict
 from class_torra import Torra, select_torras, select_torra, apagar_torra, edit_gridform, json_torras, grafico_torras
 from class_cafe import Cafe, select_cafes, select_cafe, select_descricao_cafes, apagar_cafe, busca_descricao_cafe
