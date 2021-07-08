@@ -3,8 +3,12 @@
 {% block body %}
 
 <div class='container form_torra'>
-    <form action="insere_torra" method='post'>
+    <form action="insere_torra" method='post' id='form-torra'> 
         <section>
+            <div class='form-floating'>
+                <input class='form-control fit_content' type='date' name='data' id='data'>
+                <label for='data' style='display:block;text-align:right;'>data da torra</label>
+            </div>
             <div class='form-floating'>                    
                 {{select_cafes|safe}}
                 <label for='cafe'>descrição do café</label>
@@ -38,10 +42,6 @@
                 <label for='peso'>peso</label>
             </div>
             <div class='form-floating'>
-                <input class='form-control fit_content' type='date' name='data' id='data'>
-                <label for='data' style='display:block;text-align:right;'>data da torra</label>
-            </div>
-            <div class='form-floating'>
                 <textarea class='form-control' type='date' name='observacoes' id='observacoes'></textarea>
                 <label for='data' style='display:block;text-align:right;'>observações</label>
             </div>
@@ -56,7 +56,7 @@
                             <h4 style='color:#fefefe'>grid</h4>
                         </div>
                         <div class='tempgrid mt-2'>
-                            <input type="number" id='tempgrid1' name="tempgrid1" autocomplete="off"
+                            <input type="number" class='inputGrid' id='tempgrid1' name="tempgrid1" autocomplete="off"
                                 style='margin-right: 4em;'>
                         </div>
                     </div>
@@ -79,25 +79,35 @@
 
 
 <script type="text/javascript">
+
+
+
     // add row
     var tempgrid = 1;
     $("#addRow").click(function () {
         var html = '';
         tempgrid += 1
         html += '<div id="inputFormRow">';
-        html += '<input type="number" class="inputGrid" id="tempgrid2" name="tempgrid' + tempgrid + '" autocomplete="off" style="width:4em">';
+        html += '<input type="number" class="inputGrid" name="tempgrid' + tempgrid + '" autocomplete="off" style="width:4em">';
         html += '<button id="removeRow" type="button" class="btn btn-danger btn-sm" style="width:4em">X</button>';
         html += '</div>';
 
         $('#newRow').append(html);
         $('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
-        $("form").find("input:last").focus()
+        $("form").find("input:last").focus();
     });
 
     // remove row
     $(document).on('click', '#removeRow', function () {
         $(this).closest('#inputFormRow').remove();
     });
+
+    document.querySelector('#form-torra').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      $('#addRow').click();
+      event.preventDefault();
+    }
+});
 
 </script>
 {% endblock %}

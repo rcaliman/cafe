@@ -188,6 +188,12 @@ def edit_gridform(id):
                     $(document).on('click', '#removeRow', function () {
                         $(this).closest('#inputFormRow').remove();
                     });
+                    document.querySelector('#form-torra').addEventListener('keypress', function (e) {
+                        if (e.key === 'Enter') {
+                            $('#addRow').click();
+                            event.preventDefault();
+                        }
+                    });
                 </script>
                     """ %(x)
 
