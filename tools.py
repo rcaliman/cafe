@@ -41,7 +41,8 @@ def logado():
 
 def monta_temp_json(request_form):
     dict = request_form.to_dict(flat=False)
-    tempgrid = {}
+    tempgrid0 = dict['temp_inicial']
+    tempgrid = {'tempgrid0':tempgrid0}
     for a, b in dict.items():
         if 'tempgrid' in a:
             tempgrid[a] = b

@@ -15,6 +15,7 @@
                 <table class="table table-light table-hover">
                     <thead class='table-dark'>
                         <tr>
+                            <th>id</th>
                             <th>Descrição</th>
                             <th>Peso Comprado</th>
                             <th>Data da Compra</th>
@@ -25,6 +26,7 @@
                     <tbody>
                         {% for cafe in cafes %}
                         <tr {% if cafe[5] == 0%}class='semestoque'{% endif %}>
+                            <td>{{cafe[0]}}</td>
                             <td><a href=# title='{{cafe[1]}}' class='link_info'>{{cafe[1][:20]}}</a></td>
                             <td>{{cafe[2]}}</td>
                             <td>{{cafe[3]}}</td>

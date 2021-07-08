@@ -94,7 +94,7 @@ def select_descricao_cafes(id_cafe):
         
         input = ''
         for cafe in descricao:
-            input = input + f"""<option value={cafe[0]}>{cafe[1]}</option>"""
+            input = input + f"""<option value={cafe[0]}>{cafe[0]} - {cafe[1]}</option>"""
         
         select = select + input + "</select>"
         return select

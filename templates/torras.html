@@ -17,6 +17,9 @@
                         <thead class='table-dark'>
                             <tr>
                                 <th>
+                                    id
+                                </th>
+                                <th>
                                     temperatura inicial
                                 </th>
                                 <th>
@@ -48,6 +51,9 @@
                         <tbody class='table-light'>
                             <tr>
                                 {% for torra in torras%}
+                                <td>
+                                    {{torra[0]}}
+                                </td>
                                 <td>
                                     {{torra[2]}}
                                 </td>

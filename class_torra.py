@@ -96,12 +96,18 @@ def apagar_torra(id):
         _SQL = f"""delete from torra where id = {id};"""
         cursor.execute(_SQL)
 
+def temperatura_inicial(id):
+    with UsaBD(parametros) as cursor:
+        _SQL = f"""select temp_inicial from torra where id = {id};"""
+        cursor.execute(_SQL)
+        temp_inicial = cursor.fetchall()
+    return temp_inicial[0][0]
 
 def json_torras(ids):
     ids = str(ids).replace('[','')
     ids = ids.replace(']','')
     with UsaBD(parametros) as cursor:
-        _SQL = f"""select temp_minutos from torra where id in ({ids});"""
+        _SQL = f"""select temp_minutos from torra where id in ({ids}) order by id;"""
         cursor.execute(_SQL)
         json_torras = cursor.fetchall()
     return json_torras
@@ -109,7 +115,8 @@ def json_torras(ids):
 def grafico_torras(json_torras, path_grafico, ids):
     plt.rcParams['figure.figsize'] = (13,6.5)
     axes = plt.gca()
-    ids = list(ids)
+    if ids != 0: # quando envio o zero digo que o gráfico só terá uma linha e não precisa de legenda
+        ids = sorted(list(ids))
     axes.yaxis.grid(b=True, color='black', alpha=0.3, linestyle='-.', linewidth=1,)
     tempomaximo = 0
     for json_torra in json_torras:
@@ -118,7 +125,7 @@ def grafico_torras(json_torras, path_grafico, ids):
             lista_temperaturas = []
             for i in dict_temperaturas:
                 if len(dict_temperaturas) > tempomaximo:
-                    tempomaximo = len(dict_temperaturas)
+                    tempomaximo = len(dict_temperaturas) # achar a torra mais longa para definir o tamanho do grafico
                 i[0]= float(i[0])
                 lista_temperaturas.append(i[0])
             sticks = list(range(0,tempomaximo))
@@ -127,13 +134,16 @@ def grafico_torras(json_torras, path_grafico, ids):
             plt.xticks(sticks)
             plt.xlabel('minutos')
             plt.ylabel('temperatura')
-            plt.plot(lista_temperaturas, linewidth=2, label=ids.pop(0))
+            try:
+                plt.plot(lista_temperaturas, linewidth=2, label=ids.pop(0))
+            except:
+                plt.plot(lista_temperaturas, linewidth=2)
             plt.legend()
             plt.savefig(path_grafico)
     plt.close()
             
 def edit_gridform(id):
-    tempgrid = json_torra(select_torra(id))
+    tempgrid = json.loads(json_torras(id)[0][0])
     input_grid = """
                     <section>
                         <div class='row justify-content-center' style='margin: 1em 0;'>
@@ -172,6 +182,7 @@ def edit_gridform(id):
 
                         $('#newRow').append(html);
                         $('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
+                        $("form").find("input:last").focus()
                     });
                     // remove row
                     $(document).on('click', '#removeRow', function () {

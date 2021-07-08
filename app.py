@@ -122,27 +122,27 @@ def torras():
     
 @app.route('/torra', methods=['GET','POST']) # tabela com os dados de uma torra específica
 def torra():
-    try:
-        if logado():
-            id = request.values.get('id')
-            torra = select_torra(id)
-            id_cafe = torra[0][1]
-            descricao_cafe = busca_descricao_cafe(id_cafe) 
-            grid_torra = json.loads(json_torras(id)[0][0])
-            path_grafico = 'static/img/grafico.png'
-            plot = grafico_torras(json_torras(id),path_grafico, id)
-            randomico = random.randrange(1,1000)
-            return render_template(
-                'torra.html',
-                torra = torra,
-                grid_torra = grid_torra,
-                plot = plot,
-                id = id,
-                descricao_cafe = descricao_cafe,
-                randomico = randomico,
-        )
-    except:
-        return form_login()
+    #try:
+    #    if logado():
+    id = request.values.get('id')
+    torra = select_torra(id)
+    id_cafe = torra[0][1]
+    descricao_cafe = busca_descricao_cafe(id_cafe) 
+    grid_torra = json.loads(json_torras(id)[0][0])
+    path_grafico = 'static/img/grafico.png'
+    plot = grafico_torras(json_torras(id),path_grafico, 0)
+    randomico = random.randrange(1,1000)
+    return render_template(
+        'torra.html',
+        torra = torra,
+        grid_torra = grid_torra,
+        plot = plot,
+        id = id,
+        descricao_cafe = descricao_cafe,
+        randomico = randomico,
+)
+    #except:
+    #    return form_login()
     
 @app.route('/form_torra') # formulário para cadastrar uma torra
 def form_torra():
@@ -219,28 +219,28 @@ def update_torra():
 
 @app.route('/compara_torras', methods=['GET','POST']) # compara grafico de torras
 def compara_torras():
-    try:
-        if logado():
-            if request.form:
-                form = request.form
-                ids = []
-                for i in form:
-                    ids.append(int(i))
-                grid_torras = json_torras(ids)
-                print(grid_torras)
-                path_grafico = 'static/img/graficocomparativo.png'
-                grafico = grafico_torras(grid_torras, path_grafico, ids)
-                randomico = random.randrange(1,1000)  
-                return render_template('compara_torras.html',
-                                grafico = grafico,
-                                ids = ids,
-                                randomico = random.randrange(1,1000))            
-            return render_template(
-                   'compara_torras.html',
-                   torras = select_torras(),
-            )
-    except:
-        return form_login()
+#    try:
+#        if logado():
+    if request.form:
+        form = request.form
+        ids = []
+        for i in form:
+            ids.append(int(i))
+        grid_torras = json_torras(ids)
+        print(grid_torras)
+        path_grafico = 'static/img/graficocomparativo.png'
+        grafico = grafico_torras(grid_torras, path_grafico, ids)
+        randomico = random.randrange(1,1000)  
+        return render_template('compara_torras.html',
+                        grafico = grafico,
+                        ids = ids,
+                        randomico = random.randrange(1,1000))            
+    return render_template(
+           'compara_torras.html',
+           torras = select_torras(),
+    )
+#    except:
+#        return form_login()
     
 
 @app.route('/apaga_torra', methods=['GET','POST']) # action para apagar uma torra

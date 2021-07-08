@@ -85,17 +85,19 @@
         var html = '';
         tempgrid += 1
         html += '<div id="inputFormRow">';
-        html += '<input type="number" name="tempgrid' + tempgrid + '" autocomplete="off" style="width:4em">';
+        html += '<input type="number" class="inputGrid" id="tempgrid2" name="tempgrid' + tempgrid + '" autocomplete="off" style="width:4em">';
         html += '<button id="removeRow" type="button" class="btn btn-danger btn-sm" style="width:4em">X</button>';
         html += '</div>';
 
         $('#newRow').append(html);
         $('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
+        $("form").find("input:last").focus()
     });
 
     // remove row
     $(document).on('click', '#removeRow', function () {
         $(this).closest('#inputFormRow').remove();
     });
+
 </script>
 {% endblock %}
