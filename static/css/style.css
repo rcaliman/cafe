@@ -12,11 +12,22 @@
     display: flex;
     justify-content: center;
 }
+button:hover{
+    opacity: 80%;
+}
 .botao_grande{
     width: 90%;
+    box-shadow: 3px 3px 3px #535353;
 }
 .botao_grande:hover{
-    background-color: gray;
+    opacity: 80%;
+}
+.botao_medio{
+    width: 40%;
+    box-shadow: 3px 3px 3px #535353;
+}
+.botao_medio:hover{
+    opacity: 80%;
 }
 #tempgrid1{
     width: 4em !important;
@@ -31,6 +42,9 @@
 #removeRow{
     width:5em;
     margin-left: 10px;
+}
+#newRow{
+    color: white;
 }
 .form-floating{
     margin:1em 0;
@@ -60,9 +74,9 @@ table{
     text-decoration: underline;
 }
 .link_info:hover{
-    color: #000;
+    color:red;
     text-decoration: underline;
-    font-style:italic;
+    opacity: 80%;
 }
 .form-check-label{
     color: #000;
@@ -71,4 +85,24 @@ table{
 }
 .semestoque{
     opacity: 40%;
+}
+.navegacao{
+    box-shadow: 5px 5px 5px #666666;
+}
+th{
+    text-shadow: 1px 1px 1px #666666;
+    text-align: center;
+}
+li:hover{
+    text-shadow: 1px 1px 1px #666666;
+    text-align: center;
+}
+.sombra{
+    box-shadow: 3px 3px 3px #666666;
+}
+.inputGrid{
+    border: #198754 1px solid;
+}
+.inputGrid input{
+    text-align: right;
 }

@@ -12,27 +12,30 @@
         </div>
         <div class='row'>
             <div class='col'>
-                <table class='table'>
+                <table class='table table-hover torras'>
                     <form name='torras' method='post' action='/compara_torras'>
-                        <thead class='table-dark'>
+                        <thead class='table-secondary'>
                             <tr>
                                 <th>
                                     id
                                 </th>
                                 <th>
-                                    temperatura inicial
+                                    id do café
                                 </th>
                                 <th>
-                                    temperatura final
+                                    temp. inicial
                                 </th>
                                 <th>
-                                    temperatura piso
+                                    temp. final
+                                </th>
+                                <th>
+                                    temp. piso
                                 </th>
                                 <th>
                                     fluxo de ar
                                 </th>
                                 <th>
-                                    velocidade do tambor
+                                    vel. do tambor
                                 </th>
                                 <th>
                                     peso
@@ -50,42 +53,54 @@
                         </thead>
                         <tbody class='table-light'>
                             <tr>
+
                                 {% for torra in torras%}
-                                <td>
+                                <td class='text-end'>
                                     {{torra[0]}}
                                 </td>
-                                <td>
-                                    {{torra[2]}}
+                                {% for descricao in descricao_cafes %}
+                                {% if torra[1] == descricao[1] %}
+                                <td class='text-end'>
+                                    <a href=# class='link_info' title='{{descricao[0]}}'>{{torra[1]}}</a>
                                 </td>
-                                <td>
-                                    {{torra[3]}}
+                                {% endif %}
+                                {% endfor %}
+                                <td class='text-end'>
+                                    {{torra[2]|replace('.',',')}}
                                 </td>
-                                <td>
-                                    {{torra[4]}}
+                                <td class='text-end'>
+                                    {{torra[3]|replace('.',',')}}
+                                </td class='text-end'>
+                                <td class='text-end'>
+                                    {{torra[4]|replace('.',',')}}
                                 </td>
-                                <td>
-                                    {{torra[6]}}
+                                <td class='text-end'>
+                                    {{torra[6]|replace('.',',')}}
                                 </td>
-                                <td>
-                                    {{torra[7]}}
+                                <td class='text-end'>
+                                    {{torra[7]|replace('.',',')}}
                                 </td>
-                                <td>
-                                    {{torra[8]}}
+                                <td class='text-end'>
+                                    {{torra[8]|replace('.',',')}}
                                 </td>
-                                <td>
+                                <td class='text-end'>
                                     {{torra[9]}}
                                 </td>
                                 <td class='text-center'>
-                                    <input name='{{torra[0]}}' class="form-check-input" type="checkbox" value="{{torra[0]}}"
-                                        id="flexCheckDefault">
+                                    <input name='{{torra[0]}}' class="form-check-input" type="checkbox"
+                                        value="{{torra[0]}}" id="flexCheckDefault">
                                 </td>
-                                <td>
-                                    <a href='/torra?id={{torra[0]}}'>abrir</a>
+                                <td class='text-center'>
+                                    <a href='/torra?id={{torra[0]}}' title='abrir'>📂</a>
                                 </td>
                             </tr>
                             {% endfor %}
+
                         </tbody>
-                        <tr><td colspan=9 class='text-center'><button class='btn btn-success' type='submit'>comparar torras</button></td></tr>
+                        <tr>
+                            <td colspan=10 class='text-center'><button class='sombra btn btn-success botao_grande mt-1 mb-1' type='submit'>comparar
+                                    torras</button></td>
+                        </tr>
                     </form>
                 </table>
             </div>

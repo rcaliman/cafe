@@ -49,11 +49,11 @@
 
         <section>
             <div class='row justify-content-center' style='margin: 1em 0;'>
-                <div class='col-lg-3 col-md-5 col-sm-5 col-xs-5 bg-dark border-dark'
-                    style='border: 0 1em; margin: 0 auto; text-align: center;'>
+                <div class='col-lg-3 col-md-5 col-sm-5 col-xs-5 bg-dark inputGrid'
+                    style='margin: 0 auto; text-align: center;'>
                     <div id="inputFormRow">
                         <div class='tempgrid mt-2'>
-                            <h4 style='color:#fefefe'>grid</h4>
+                            <h5 style='color:#198754'>GRID</h5>
                         </div>
                         <div class='tempgrid mt-2'>
                             <input type="number" class='inputGrid' id='tempgrid1' name="tempgrid1" autocomplete="off"
@@ -71,7 +71,7 @@
         </section>
         <section>
             <div class='form-floating'>
-                <button type='submit' class='btn btn-success w-100'>salvar</button>
+                <button type='submit' class='btn btn-success w-100 sombra'>salvar</button>
             </div>
         </section>
     </form>
@@ -80,8 +80,6 @@
 
 <script type="text/javascript">
 
-
-
     // add row
     var tempgrid = 1;
     $("#addRow").click(function () {
@@ -89,7 +87,7 @@
         tempgrid += 1
         html += '<div id="inputFormRow">';
         html += '<input type="number" class="inputGrid" name="tempgrid' + tempgrid + '" autocomplete="off" style="width:4em">';
-        html += '<button id="removeRow" type="button" class="btn btn-danger btn-sm" style="width:4em">X</button>';
+        html += '<button id="removeRow" type="button" title="apaga o campo ' + tempgrid +'" class="btn btn-danger btn-sm" style="width:4em">' + tempgrid + '</button><br>';
         html += '</div>';
 
         $('#newRow').append(html);
@@ -103,11 +101,11 @@
     });
 
     document.querySelector('#form-torra').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-      $('#addRow').click();
-      event.preventDefault();
-    }
-});
+        if (e.key === 'Enter') {
+            $('#addRow').click();
+            event.preventDefault();
+        }
+    });
 
 </script>
 {% endblock %}

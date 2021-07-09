@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, session, redirect
 from tools import Login, logado, monta_temp_json
 from werkzeug.datastructures import ImmutableMultiDict
 from class_torra import Torra, select_torras, select_torra, apagar_torra, edit_gridform, json_torras, grafico_torras
-from class_cafe import Cafe, select_cafes, select_cafe, select_descricao_cafes, apagar_cafe, busca_descricao_cafe
+from class_cafe import Cafe, select_cafes, select_cafe, select_descricao_cafes, apagar_cafe, busca_descricao_cafe, busca_descricao_cafes
 import json
 import random
 
@@ -111,14 +111,16 @@ def apaga_cafe():
 
 @app.route('/torras', methods=['GET','POST']) # tabela com torras já feitas
 def torras():
-    try:
-        if logado():
-            return render_template(
-                'torras.html',
-                torras = select_torras(),
-            )
-    except:
-        return form_login()
+   # try:
+   #    if logado():
+   
+    return render_template(
+        'torras.html',
+        torras = select_torras(),
+        descricao_cafes = busca_descricao_cafes()
+    )
+    #except:
+        #return form_login()
     
 @app.route('/torra', methods=['GET','POST']) # tabela com os dados de uma torra específica
 def torra():
@@ -138,7 +140,7 @@ def torra():
         grid_torra = grid_torra,
         plot = plot,
         id = id,
-        descricao_cafe = descricao_cafe,
+        descricao_cafe = descricao_cafe[0][0],
         randomico = randomico,
 )
     #except:

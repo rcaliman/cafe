@@ -50,4 +50,4 @@ def monta_temp_json(request_form):
 
 def json_para_dic(js):
     return json.loads(js)
-    
+

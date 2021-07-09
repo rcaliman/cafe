@@ -79,14 +79,36 @@ class Torra:
             
 def select_torras():
     with UsaBD(parametros) as cursor:
-        _SQL = """select * from torra order by data_torra desc, id desc;"""
+        _SQL = """select id,
+                id_cafe,
+                temp_inicial,
+                temp_final,
+                temp_piso,
+                temp_minutos,
+                fluxo_ar,
+                velocidade_tambor,
+                peso,
+                DATE_FORMAT(data_torra,'%d-%m-%Y'),
+                observacoes 
+            from torra order by data_torra desc, id desc;"""
         cursor.execute(_SQL)
         torras = cursor.fetchall()
     return torras
 
 def select_torra(id):
     with UsaBD(parametros) as cursor:
-        _SQL = f"""select * from torra where id = {id};"""
+        _SQL = f"""select id,
+                id_cafe,
+                temp_inicial,
+                temp_final,
+                temp_piso,
+                temp_minutos,
+                fluxo_ar,
+                velocidade_tambor,
+                peso,
+                DATE_FORMAT(data_torra,'%d-%m-%Y'),
+                observacoes
+            from torra where id = {id};"""
         cursor.execute(_SQL)
         torra = cursor.fetchall()
     return torra
@@ -147,16 +169,17 @@ def edit_gridform(id):
     input_grid = """
                     <section>
                         <div class='row justify-content-center' style='margin: 1em 0;'>
-                        <div class='col-lg-3 col-md-5 col-sm-5 col-xs-5 bg-dark border-dark' style='border: 0 1em; margin: 0 auto; text-align: center;'>
+                        <div class='col-lg-3 col-md-5 col-sm-5 col-xs-5 bg-dark inputGrid' style='margin: 0 auto; text-align: center;'>
                         <div id='inputFormRow'>
                         <div class='tempgrid mt-2'>
-                            <h4 style='color:#fefefe'>grid</h4>
+                            <h5 style='color:#198754'>GRID</h5>
                         </div>
                   """
     cont = 0
     for a, b in tempgrid.items():
         input_grid = input_grid + f'''
-                <input type="number" id="{a}" class='tempgrid' name="{a}" value="{b[0]}" autocomplete="off" style="width:4em;margin-right: 4em;">
+                <input type="number" id="{a}" class='inputGrid' name="{a}" value="{b[0]}" autocomplete="off" style="width:4em;margin-right: 5px;">
+                <div class="btn btn-danger btn-sm" style="width:4em;cursor:default;opacity:60%">{cont}</div><br>
             '''
         cont += 1
         x = str(cont)
@@ -176,8 +199,8 @@ def edit_gridform(id):
                         var html = '';
                         tempgrid += 1
                         html += '<div id="inputFormRow">';
-                        html += '<input type="number" name="tempgrid' + tempgrid + '" autocomplete="off" style="width:4em">';
-                        html += '<button id="removeRow" type="button" class="btn btn-danger btn-sm" style="width:4em">X</button>';
+                        html += '<input type="number" class="inputGrid" name="tempgrid' + tempgrid + '" autocomplete="off" style="width:4em">';
+                        html += '<button id="removeRow" type="button" title="apaga o campo ' + tempgrid +'" class="btn btn-danger btn-sm" style="width:4em">' + tempgrid + '</button>';
                         html += '</div>';
 
                         $('#newRow').append(html);

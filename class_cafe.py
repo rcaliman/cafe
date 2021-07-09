@@ -58,7 +58,13 @@ def apagar_cafe(id):
 
 def select_cafes():
     with UsaBD(parametros) as cursor:
-        _SQL = """select * from cafe order by data_compra desc, id desc;"""
+        _SQL = """select id,
+                descricao,
+                quantidade_comprada,
+                DATE_FORMAT(data_compra,'%d-%m-%Y'),
+                origem,
+                estoque 
+            from cafe order by data_compra desc, id desc;"""
         cursor.execute(_SQL)
         cafes = cursor.fetchall()
     return cafes
@@ -72,10 +78,17 @@ def select_cafe(id):
 
 def busca_descricao_cafe(id):
     with UsaBD(parametros) as cursor:
-        _SQL = f"""select descricao from cafe where id = {id};"""
+        _SQL = f"""select descricao, id from cafe where id = {id};"""
         cursor.execute(_SQL)
         descricao = cursor.fetchall()
-    return descricao[0][0]
+    return descricao
+
+def busca_descricao_cafes():
+    with UsaBD(parametros) as cursor:
+        _SQL = f"""select descricao, id from cafe;"""
+        cursor.execute(_SQL)
+        descricao = cursor.fetchall()
+    return descricao
 
 def select_descricao_cafes(id_cafe):
     with UsaBD(parametros) as cursor:

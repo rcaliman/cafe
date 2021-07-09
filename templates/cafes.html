@@ -5,7 +5,7 @@
     <div class='container'>
         <div class='row'>
             <div class='col'>
-                <a class='btn btn-dark botao_grande' href='/form_cafe'>
+                <a class='btn btn-success botao_grande' href='/form_cafe'>
                     inserir novo café
                 </a>
             </div>
@@ -13,25 +13,25 @@
         <div class='row'>
             <div class='col'>
                 <table class="table table-light table-hover">
-                    <thead class='table-dark'>
+                    <thead class='table-secondary'>
                         <tr>
                             <th>id</th>
-                            <th>Descrição</th>
-                            <th>Peso Comprado</th>
-                            <th>Data da Compra</th>
-                            <th>Origem</th>
+                            <th>descrição</th>
+                            <th>peso comprado</th>
+                            <th>data da compra</th>
+                            <th>origem</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for cafe in cafes %}
                         <tr {% if cafe[5] == 0%}class='semestoque'{% endif %}>
-                            <td>{{cafe[0]}}</td>
+                            <td class='text-end'>{{cafe[0]}}</td>
                             <td><a href=# title='{{cafe[1]}}' class='link_info'>{{cafe[1][:20]}}</a></td>
-                            <td>{{cafe[2]}}</td>
-                            <td>{{cafe[3]}}</td>
+                            <td class='text-end'>{{cafe[2]|replace('.',',')}}</td>
+                            <td class='text-end'>{{cafe[3]}}</td>
                             <td><a href=# title='{{cafe[4]}}' class='link_info'>{{cafe[4][:20]}}</a></td>
-                            <td><a href="/form_cafe?id={{cafe[0]}}">editar</a></td>
+                            <td class='text-center' title='editar'><a href="/form_cafe?id={{cafe[0]}}">📝</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
