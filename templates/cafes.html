@@ -5,7 +5,7 @@
     <div class='container'>
         <div class='row'>
             <div class='col'>
-                <a class='btn btn-success botao_grande' href='/form_cafe'>
+                <a class='btn btn-primary botao_grande' href='/form_cafe'>
                     inserir novo café
                 </a>
             </div>
@@ -15,11 +15,21 @@
                 <table class="table table-light table-hover">
                     <thead class='table-secondary'>
                         <tr>
-                            <th>id</th>
-                            <th>descrição</th>
-                            <th>peso comprado</th>
-                            <th>data da compra</th>
-                            <th>origem</th>
+                            <th>
+                                <a href='cafes?ord=id&asc_desc={{asc_desc}}'>id</a>
+                            </th>
+                            <th>
+                                <a href='cafes?ord=descricao&asc_desc={{asc_desc}}'>descrição</a>
+                            </th>
+                            <th>
+                                <a href='cafes?ord=quantidade_comprada&asc_desc={{asc_desc}}'>quant. comprada</a>
+                            </th>
+                            <th>
+                                <a href='cafes?ord=data_compra&asc_desc={{asc_desc}}'>data da compra</a>
+                            </th>
+                            <th>
+                                <a href='cafes?ord=origem&asc_desc={{asc_desc}}'>origem</a>
+                            </th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>

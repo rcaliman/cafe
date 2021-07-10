@@ -77,9 +77,9 @@ class Torra:
             _SQL = _SQL.replace("''","NULL")
             cursor.execute(_SQL)
             
-def select_torras():
+def select_torras(ord,asc):
     with UsaBD(parametros) as cursor:
-        _SQL = """select id,
+        _SQL = f"""select id,
                 id_cafe,
                 temp_inicial,
                 temp_final,
@@ -90,7 +90,7 @@ def select_torras():
                 peso,
                 DATE_FORMAT(data_torra,'%d-%m-%Y'),
                 observacoes 
-            from torra order by data_torra desc, id desc;"""
+            from torra order by {ord} {asc};"""
         cursor.execute(_SQL)
         torras = cursor.fetchall()
     return torras

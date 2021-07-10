@@ -5,7 +5,7 @@
     <div class='container'>
         <div class='row'>
             <div class='col'>
-                <a class='btn btn-dark botao_grande' href='/form_torra'>
+                <a class='btn btn-primary botao_grande' href='/form_torra'>
                     inserir nova torra
                 </a>
             </div>
@@ -17,31 +17,31 @@
                         <thead class='table-secondary'>
                             <tr>
                                 <th>
-                                    id
+                                    <a href='torras?ord=id&asc_desc={{asc_desc}}'>id</a>
                                 </th>
                                 <th>
-                                    id do café
+                                    <a href='torras?ord=id_cafe&asc_desc={{asc_desc}}'>id do café</a>
                                 </th>
                                 <th>
-                                    temp. inicial
+                                    <a href='torras?ord=temp_inicial&asc_desc={{asc_desc}}'>temp. inicial</a>
                                 </th>
                                 <th>
-                                    temp. final
+                                    <a href='torras?ord=temp_final&asc_desc={{asc_desc}}'>temp. final</a>
                                 </th>
                                 <th>
-                                    temp. piso
+                                    <a href='torras?ord=temp_piso&asc_desc={{asc_desc}}'>temp. piso</a>
                                 </th>
                                 <th>
-                                    fluxo de ar
+                                    <a href='torras?ord=fluxo_ar&asc_desc={{asc_desc}}'>fluxo de ar</a>
                                 </th>
                                 <th>
-                                    vel. do tambor
+                                    <a href='torras?ord=velocidade_tambor&asc_desc={{asc_desc}}'>vel. tambor</a>
                                 </th>
                                 <th>
-                                    peso
+                                    <a href='torras?ord=peso&asc_desc={{asc_desc}}'>peso</a>
                                 </th>
                                 <th>
-                                    data da torra
+                                    <a href='torras?ord=data_torra&asc_desc={{asc_desc}}'>data da torra</a>
                                 </th>
                                 <th>
                                     comparar
@@ -87,19 +87,22 @@
                                     {{torra[9]}}
                                 </td>
                                 <td class='text-center'>
-                                    <input name='{{torra[0]}}' class="form-check-input" type="checkbox"
+                                    <input name='{{torra[0]}}' title='selecione para comparar torras' class="form-check-input" type="checkbox"
                                         value="{{torra[0]}}" id="flexCheckDefault">
                                 </td>
                                 <td class='text-center'>
-                                    <a href='/torra?id={{torra[0]}}' title='abrir'>📂</a>
+                                    <a href='/torra?id={{torra[0]}}' title='abrir mais informações sobre a torra'>📂</a>
                                 </td>
                             </tr>
                             {% endfor %}
 
                         </tbody>
                         <tr>
-                            <td colspan=10 class='text-center'><button class='sombra btn btn-success botao_grande mt-1 mb-1' type='submit'>comparar
-                                    torras</button></td>
+                            <td colspan=10 class='text-center'>
+                                <button title='selecione as torras que deseja comparar e clique aqui' class='sombra btn btn-secondary botao_medio mt-1 mb-1' type='submit'>
+                                    comparar torras
+                                </button>
+                            </td>
                         </tr>
                     </form>
                 </table>

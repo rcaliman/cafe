@@ -3,13 +3,14 @@ from parametros import parametros
 
 class Cafe:
     def __init__(self, id=None, descricao=None, 
-                 quantidade_comprada=None, data_compra=None, origem=None, estoque=None):
+                 quantidade_comprada=None, data_compra=None, origem=None, estoque=None, usuario=None):
         self.id = id
         self.descricao = descricao
         self.quantidade_comprada = quantidade_comprada
         self.data_compra = data_compra
         self.origem = origem
         self.estoque = estoque
+        self.usuario = usuario
         
     def __str__(self):
         dic = {
@@ -17,7 +18,8 @@ class Cafe:
             'quantidade comprada': self.quantidade_comprada,
             'data da compra': self.data_compra,
             'origem': self.origem,
-            'estoque': self.estoque
+            'estoque': self.estoque,
+            'usuario': self.usuario
         }
         return str(dic)
     
@@ -28,13 +30,15 @@ class Cafe:
                 quantidade_comprada,
                 data_compra,
                 origem,
-                estoque
+                estoque,
+                usuario
                 ) values (
                     '{self.descricao}',
                     '{self.quantidade_comprada}',
                     '{self.data_compra}',
                     '{self.origem}',
-                    {self.estoque}
+                    {self.estoque},
+                    {self.usuario}
                 );"""
             _SQL = _SQL.replace("''","NULL")
             cursor.execute(_SQL)
@@ -46,7 +50,8 @@ class Cafe:
                 quantidade_comprada = '{self.quantidade_comprada}',
                 data_compra = '{self.data_compra}',
                 origem = '{self.origem}',
-                estoque = {self.estoque}
+                estoque = {self.estoque},
+                usuario = {self.usuario}
                 where id = {self.id};"""
             _SQL = _SQL.replace("''","NULL")
             cursor.execute(_SQL)
@@ -56,15 +61,15 @@ def apagar_cafe(id):
         _SQL = f"""delete from cafe where id={id};"""
         cursor.execute(_SQL)
 
-def select_cafes():
+def select_cafes(ord, asc, usuario):
     with UsaBD(parametros) as cursor:
-        _SQL = """select id,
+        _SQL = f"""select id,
                 descricao,
                 quantidade_comprada,
                 DATE_FORMAT(data_compra,'%d-%m-%Y'),
                 origem,
                 estoque 
-            from cafe order by data_compra desc, id desc;"""
+            from cafe where usuario = {usuario} order by {ord} {asc};"""
         cursor.execute(_SQL)
         cafes = cursor.fetchall()
     return cafes

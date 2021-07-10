@@ -61,6 +61,9 @@ table{
 .torra table{
     margin: 10px 10px;
 }
+.torra td{
+    text-align: end;
+}
 .danger_hover:hover{
     color: red;
     text-decoration: underline;
@@ -93,6 +96,10 @@ th{
     text-shadow: 1px 1px 1px #666666;
     text-align: center;
 }
+th > a{
+    color: #000;
+    text-decoration: none;
+}
 li:hover{
     text-shadow: 1px 1px 1px #666666;
     text-align: center;
@@ -105,4 +112,8 @@ li:hover{
 }
 .inputGrid input{
     text-align: right;
+}
+usuario{
+    margin-right: 1em;
+    color: #fefefe;
 }
