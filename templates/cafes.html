@@ -5,15 +5,15 @@
     <div class='container'>
         <div class='row'>
             <div class='col'>
-                <a class='btn btn-primary botao_grande' href='/form_cafe'>
+                <a class='btn botao_medio' href='/form_cafe'>
                     inserir novo café
                 </a>
             </div>
         </div>
         <div class='row'>
             <div class='col'>
-                <table class="table table-light table-hover">
-                    <thead class='table-secondary'>
+                <table class="table table-hover">
+                    <thead>
                         <tr>
                             <th>
                                 <a href='cafes?ord=id&asc_desc={{asc_desc}}'>id</a>
@@ -33,14 +33,14 @@
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class='table-light'>
                         {% for cafe in cafes %}
                         <tr {% if cafe[5] == 0%}class='semestoque'{% endif %}>
-                            <td class='text-end'>{{cafe[0]}}</td>
-                            <td><a href=# title='{{cafe[1]}}' class='link_info'>{{cafe[1][:20]}}</a></td>
-                            <td class='text-end'>{{cafe[2]|replace('.',',')}}</td>
-                            <td class='text-end'>{{cafe[3]}}</td>
-                            <td><a href=# title='{{cafe[4]}}' class='link_info'>{{cafe[4][:20]}}</a></td>
+                            <td class='text-end'>{{cafe[0]|replace("None","")}}</td>
+                            <td><a href=# title='{{cafe[1]|replace("None","")}}' class='link_info'>{{cafe[1][:20]|replace("None","")}}</a></td>
+                            <td class='text-end'>{{cafe[2]|replace('.',',')|replace('None','')}}</td>
+                            <td class='text-end'>{{cafe[3]|replace("None","")}}</td>
+                            <td><a href=# title='{{cafe[4]|replace("None","")}}' class='link_info'>{{cafe[4][:20]}}</a></td>
                             <td class='text-center' title='editar'><a href="/form_cafe?id={{cafe[0]}}">📝</a></td>
                         </tr>
                         {% endfor %}

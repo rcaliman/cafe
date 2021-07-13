@@ -2,17 +2,17 @@
 
 {% block body %}
 <section>
-    <div class='container torra'>
-        <div class='row'>
-            <div class='col'>
-                <table class='table table-dark table-hover'>
+    <div class='container' style='display: flex;'>
+        <div class='row' style='margin:0 auto;'>
+            <div class='col-lg-6' style='margin:0 auto;'>
+                <table class='table table-light table-hover'>
                     {% for valor in torra %}
                     <tr>
                         <td>
                             temperatura inicial:
                         </td>
                         <td>
-                            {{valor[2]|replace('.',',')}}
+                            {{valor[2]|replace('.',',')|replace("None","")}}
                         </td>
                     </tr>
                     <tr>
@@ -20,7 +20,7 @@
                             temperatura final:
                         </td>
                         <td>
-                            {{valor[3]|replace('.',',')}}
+                            {{valor[3]|replace('.',',')|replace("None","")}}
                         </td>
                     </tr>
                     <tr>
@@ -28,7 +28,7 @@
                             piso:
                         </td>
                         <td>
-                            {{valor[4]|replace('.',',')}}
+                            {{valor[4]|replace('.',',')|replace("None","")}}
                         </td>
                     </tr>
                     <tr>
@@ -36,7 +36,7 @@
                             fluxo de ar:
                         </td>
                         <td>
-                            {{valor[6]|replace('.',',')}}
+                            {{valor[6]|replace('.',',')|replace("None","")}}
                         </td>
                     </tr>
                     <tr>
@@ -44,7 +44,7 @@
                             velocidade do tambor:
                         </td>
                         <td>
-                            {{valor[7]|replace('.',',')}}
+                            {{valor[7]|replace('.',',')|replace("None","")}}
                         </td>
                     </tr>
                     <tr>
@@ -52,7 +52,7 @@
                             peso:
                         </td>
                         <td>
-                            {{valor[8]|replace('.',',')}}
+                            {{valor[8]|replace('.',',')|replace("None","")}}
                         </td>
                     </tr>
                     <tr>
@@ -60,7 +60,7 @@
                             data da torra:
                         </td>
                         <td>
-                            {{valor[9]}}
+                            {{valor[9]|replace("None","")}}
                         </td>
                     </tr>
                     <tr>
@@ -70,22 +70,24 @@
                     </tr>
                     <tr>
                         <td colspan=2 style='text-align: left;'>
-                            {{ descricao_cafe}}
+                            {{ descricao_cafe|replace("None","") }}
                         </td>
                     </tr>
 
                     {% endfor %}
                 </table>
-                <table class='table table-hover table-dark'>
+            </div>
+            <div class='col-lg-6' style='margin:0 auto;'>
+                <table class='table table-hover table-light'>
                     <tr>
                         <th>minuto</th>
                         <th>temperatura</th>
                     </tr>
                     {% for a,b in grid_torra.items() %}
-                        <tr>
-                            <td>{{a|replace('tempgrid','')}}</td>
-                            <td>{{b[0]}}</td>
-                        </tr>
+                    <tr>
+                        <td>{{a|replace('tempgrid','')}}</td>
+                        <td>{{b[0]}}</td>
+                    </tr>
                     {% endfor %}
                 </table>
             </div>
@@ -93,32 +95,34 @@
     </div>
 </section>
 <section>
-    <div>
-        <img class='img-fluid' src='static/img/grafico.png?r={{randomico}}'>
+    <div class='div_formulario' style='margin: 0 auto;'>
+        <img style='border: 1px #666666 solid;' class='img-fluid' src='static/img/grafico.png?r={{randomico}}'>
     </div>
 </section>
 <footer>
     <div class='container'>
-        <div class='row'>
+        <div class='row mb-4' style='border-top: 1px  solid #dfe0e1; border-bottom: 1px solid #dfe0e1;'>
             <div class='col'>
                 <div class="btn-group dropup">
-                    <button style='margin-bottom: 1em;'type="button" class="btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      editar
+                    <button type="button" class="btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        editar
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="/edita_torra?id={{id}}">editar</a></li>
+                        <li><a class="dropdown-item" href="/edita_torra?id={{id}}">editar</a></li>
                     </ul>
-                  </div>
+                </div>
             </div>
             <div class='col'>
                 <div class="btn-group dropup">
-                    <button style='margin-bottom: 1em;'type="button" class="btn-sm btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      apagar
+                    <button type="button" class="btn-sm btn-danger dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        apagar
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item danger_hover" href="/apaga_torra?id={{id}}">apagar</a></li>
+                        <li><a class="dropdown-item danger_hover" href="/apaga_torra?id={{id}}">apagar</a></li>
                     </ul>
-                  </div>
+                </div>
             </div>
         </div>
     </div>

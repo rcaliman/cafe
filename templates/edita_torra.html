@@ -7,60 +7,72 @@
             {% for valor in torra %}
             <div class='form-floating'>
                 <input type='hidden' name='id' id='id' value={{valor[0]}}>
-                    {{select_cafes|safe}}
+                {{select_cafes|safe}}
                 <label for='cafe'>descrição do café</label>
             </div>
             <div class='form-floating'>
-                <input value='{{valor[2]}}' class='form-control fit_content' type='number' name='temp_inicial'
-                    id='temp_inicial'>
+                <input value='{{valor[2]|replace("None","")}}' class='form-control fit_content' type='number'
+                    step='0.01' name='temp_inicial' id='temp_inicial'>
                 <label for='temp_inicial'>temperatura inicial</label>
             </div>
             <div class='form-floating'>
-                <input value='{{valor[3]}}' class='form-control fit_content' type='number' name='temp_final'
-                    id='temp_final'>
+                <input value='{{valor[3]|replace("None","")}}' class='form-control fit_content' type='number'
+                    step='0.01' name='temp_final' id='temp_final'>
                 <label for='temp_final'>temperatura final</label>
             </div>
 
             <div class='form-floating'>
-                <input value='{{valor[4]}}' class='form-control fit_content' type='number' name='piso' id='piso'>
+                <input value='{{valor[4]|replace("None","")}}' class='form-control fit_content' type='number'
+                    step='0.01' name='piso' id='piso'>
                 <label for='piso'>piso</label>
             </div>
 
             <div class='form-floating'>
-                <input value='{{valor[6]}}' class='form-control fit_content' type='number' name='fluxo_ar'
-                    id='fluxo_ar'>
+                <input value='{{valor[6]|replace("None","")}}' class='form-control fit_content' type='number'
+                    step='0.01' name='fluxo_ar' id='fluxo_ar'>
                 <label for='fluxo_ar'>fluxo de ar</label>
             </div>
 
             <div class='form-floating'>
-                <input value='{{valor[7]}}' class='form-control fit_content' type='number' name='velocidade_tambor'
-                    id='velocidade_tambor'>
+                <input value='{{valor[7]|replace("None","")}}' class='form-control fit_content' type='number'
+                    step='0.01' name='velocidade_tambor' id='velocidade_tambor'>
                 <label for='velocidade_tambor'>velocidade do tambor</label>
             </div>
 
             <div class='form-floating'>
-                <input value='{{valor[8]}}' class='form-control fit_content' type='number' name='peso' id='peso'>
+                <input value='{{valor[8]|replace("None","")}}' class='form-control fit_content' type='number'
+                    step='0.01' name='peso' id='peso'>
                 <label for='peso'>peso</label>
             </div>
             <div class='form-floating'>
-                <input value='{{valor[9]}}' class='form-control fit_content' type='date' name='data' id='data'>
+                <input value='{{valor[9]|replace("None","")}}' class='form-control fit_content' type='date' name='data'
+                    id='data'>
                 <label for='data' style='display:block;text-align:right;'>data da torra</label>
             </div>
             <div class='form-floating'>
-                <textarea class='form-control' type='date' name='observacoes' id='observacoes'>{{valor[10]}}</textarea>
+                <textarea class='form-control' type='date' name='observacoes'
+                    id='observacoes'>{{valor[10]|replace('None','')}}</textarea>
                 <label for='data' style='display:block;text-align:right;'>observações</label>
             </div>
             {% endfor %}
         </section>
+        <section>
+            <table class='table'>
+                <tr>
+                    <td>
 
-        <section>
-            <div class='container'>
-                {{grid_torra|safe}}
-            </div>
-        </section>
-        <section>
-            <div class='form-floating'>
-                <button type='submit' class='btn btn-secondary w-100'>salvar</button>
-            </div>
+                        <div class='container'>
+                            {{grid_torra|safe}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <div class='form-floating'>
+                            <button type='submit' class='btn btn-secondary w-100'>salvar</button>
+                        </div>
+                    </td>
+                </tr>
         </section>
         {% endblock %}

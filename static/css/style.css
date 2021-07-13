@@ -1,6 +1,35 @@
 .container{
     margin-top: 1em;
 }
+body{
+    background-color:#e6e6fa;
+}
+table{
+    background-color: lavender;
+    margin-top: 1em;
+    width: 100%;
+    border-radius: 5px;
+}
+thead{
+    background-color: #4f4f4f;
+}
+th{
+    text-shadow: 1px 1px 1px #666666;
+    text-align: center;
+}
+th > a{
+    color: #000;
+    text-decoration: none;
+}
+th > a:hover{
+    color: lightgray;
+}
+.div_formulario{
+    background-color: #f8f9fa;
+    padding:1em;
+    margin: 0 auto;
+    border-radius: 5px;
+}
 .material-icons.md-light {
     color: rgba(255, 255, 255, 1); 
 }
@@ -18,16 +47,23 @@ button:hover{
 .botao_grande{
     width: 90%;
     box-shadow: 3px 3px 3px #535353;
+    background-color:steelblue;
+    color: #fefefe;
 }
 .botao_grande:hover{
-    opacity: 80%;
+    color: #fefefe;
+    background-color:dodgerBlue;
 }
 .botao_medio{
     width: 40%;
     box-shadow: 3px 3px 3px #535353;
+    background-color:steelblue;
+    color: #fefefe;
+    margin: 0 auto;
 }
 .botao_medio:hover{
-    opacity: 80%;
+    color: #fefefe;
+    background-color:dodgerBlue;
 }
 #tempgrid1{
     width: 4em !important;
@@ -52,12 +88,9 @@ button:hover{
     margin: 1em auto;
 }
 label{
-    color: coral;
+    color: steelblue;
 }
-table{
-    margin-top: 1em;
-    width: 100%;
-}
+
 .torra table{
     margin: 10px 10px;
 }
@@ -92,14 +125,7 @@ table{
 .navegacao{
     box-shadow: 5px 5px 5px #666666;
 }
-th{
-    text-shadow: 1px 1px 1px #666666;
-    text-align: center;
-}
-th > a{
-    color: #000;
-    text-decoration: none;
-}
+
 li:hover{
     text-shadow: 1px 1px 1px #666666;
     text-align: center;
@@ -107,13 +133,33 @@ li:hover{
 .sombra{
     box-shadow: 3px 3px 3px #666666;
 }
+#botao_torras{
+    margin-left: 0px;
+    border-radius: 0 5px 5px 0;
+    display: inline-block;
+}
+#torras_ids{
+    margin-right: 0px;
+    border-radius: 5px 0 0 5px;
+    display: inline-block;
+    border-color: #1a76fb;
+    color: #1a76fb;
+}
 .inputGrid{
-    border: #198754 1px solid;
+    border: #e6e6fa 1px solid;
+    width:70%;
+    border-radius: 5px;
+    background-color: steelblue;
 }
 .inputGrid input{
     text-align: right;
+    background-color: #fefefe;
 }
 usuario{
     margin-right: 1em;
     color: #fefefe;
+}
+input.inputGrid::placeholder{
+    color: #1a76fb;
+    opacity: 35%;
 }

@@ -2,10 +2,12 @@ from flask import Flask, request, render_template, session, redirect
 from tools import Login, logado, monta_temp_json
 from werkzeug.datastructures import ImmutableMultiDict
 from class_usuario import usuario_id
-from class_torra import Torra, select_torras, select_torra, apagar_torra, edit_gridform, json_torras, grafico_torras
+from class_torra import Torra, select_torras, select_torra, apagar_torra, edit_gridform, \
+    json_torras, grafico_torras, js_torra, html_select_id
 from class_cafe import Cafe, select_cafes, select_cafe, select_descricao_cafes, apagar_cafe, busca_descricao_cafe, busca_descricao_cafes
 import json
 import random
+import logging
 
 app = Flask(__name__)
 
@@ -41,18 +43,19 @@ def cafes():
             ord = request.values.get('ord') or 'id'
             asc = request.values.get('asc_desc') or 'desc'
             usuario = usuario_id(session['usuario'])
-    
+
             if request.values.get('asc_desc') == 'asc':
                 asc_desc = 'desc'
             else:
                 asc_desc = 'asc'
-            
+
             return render_template(
                 'cafes.html',
                 cafes = select_cafes(ord, asc, usuario),
                 asc_desc = asc_desc,
             )
-    except:
+    except Exception:
+        logging.exception('Erro')
         return form_login()
     
 @app.route('/form_cafe') #formulario para fazer o cadastro dos cafés
@@ -79,18 +82,23 @@ def insere_cafe():
     try:
         if logado():
             if request.form:
-                cafe = Cafe(
-                    None,
-                    request.form['descricao'],
-                    request.form['quantidade'],
-                    request.form['data_compra'],
-                    request.form['origem'],
-                    request.form['estoque'],
-                    usuario_id(session['usuario'])
-                )
-                cafe.insere_banco()
-        return redirect('/cafes',302)
-    except:
+                try:
+                    cafe = Cafe(
+                        None,
+                        request.form['descricao'],
+                        request.form['quantidade'],
+                        request.form['data_compra'],
+                        request.form['origem'],
+                        request.form['estoque'],
+                        usuario_id(session['usuario'])
+                    )
+                    cafe.insere_banco()
+                    return redirect('/cafes',302)
+                except Exception:
+                    logging.exception('Erro')
+                    return form_cafe()
+    except Exception:
+        logging.exception('Erro')
         return form_login()
     
 @app.route('/update_cafe',methods=['GET','POST']) # action do formulário de atualizacao de cafés
@@ -128,18 +136,19 @@ def torras():
         if logado():
             ord = request.values.get('ord') or 'id'
             asc = request.values.get('asc_desc') or 'desc'
-
+            usuario = usuario_id(session['usuario'])
+            select = html_select_id()
             if request.values.get('asc_desc') == 'asc':
                 asc_desc = 'desc'
             else:
                 asc_desc = 'asc'
-
             return render_template(
                 'torras.html',
-                torras = select_torras(ord,asc),
+                torras = select_torras(ord,asc, usuario),
                 descricao_cafes = busca_descricao_cafes(),
                 ord = ord,
                 asc_desc = asc_desc,
+                select = select,
             )
     except:
         return form_login()
@@ -168,13 +177,19 @@ def torra():
     except:
         return form_login()
     
-@app.route('/form_torra') # formulário para cadastrar uma torra
+@app.route('/form_torra', methods=['GET','POST']) # formulário para cadastrar uma torra
 def form_torra():
     try:
         if logado():
-            return render_template('form_torra.html',
-                select_cafes = select_descricao_cafes(0),                       
-            )
+            try:
+                ids = request.form['torra_ids']
+                return render_template('form_torra.html',
+                    select_cafes = select_descricao_cafes(0),
+                    js = js_torra(ids),                      
+                )
+            except Exception:
+                logging.exception('Erro')
+                return torras()
     except:
         return form_login()
 
@@ -194,7 +209,8 @@ def insere_torra():
                     request.form['velocidade_tambor'],
                     request.form['peso'],
                     request.form['data'],
-                    request.form['observacoes'])
+                    request.form['observacoes'],
+                    usuario_id(session['usuario']))
                 torra.insere_banco()
                 
         return redirect('/torras',302)
@@ -215,7 +231,8 @@ def edita_torra():
                 grid_torra = grid_torra,  
                 select_cafes = select_cafes,        
             )
-    except:
+    except Exception:
+        logging.exception('Erro')
         return form_login()
     
 @app.route('/update_torra', methods=['GET','POST']) # action para atualizar os dados de uma torra
@@ -285,4 +302,4 @@ def logoff():
     session.pop('usuario', None)
     return redirect('/',302)
 
-app.run(debug='True')
+app.run(debug='True', host='0.0.0.0', port=5000)

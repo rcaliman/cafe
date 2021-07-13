@@ -3,7 +3,7 @@ from parametros import parametros
 
 class Cafe:
     def __init__(self, id=None, descricao=None, 
-                 quantidade_comprada=None, data_compra=None, origem=None, estoque=None, usuario=None):
+                 quantidade_comprada=0, data_compra='1900-01-01', origem=None, estoque=0, usuario=None):
         self.id = id
         self.descricao = descricao
         self.quantidade_comprada = quantidade_comprada
