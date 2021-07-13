@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, session, redirect
-from tools import Login, logado, monta_temp_json
+from tools import Login, logado, monta_temp_json, inverte_data_query
 from werkzeug.datastructures import ImmutableMultiDict
 from class_usuario import usuario_id
 from class_torra import Torra, select_torras, select_torra, apagar_torra, edit_gridform, \
@@ -261,7 +261,8 @@ def edita_torra():
                 return render_template('edita_torra.html',
                     torra = torra,  
                     grid_torra = grid_torra,  
-                    select_cafes = select_cafes,        
+                    select_cafes = select_cafes,
+                    data =  inverte_data_query(torra),       
                 )
             except:
                 return torras()
@@ -286,7 +287,9 @@ def update_torra():
                         request.form['velocidade_tambor'],
                         request.form['peso'],
                         request.form['data'],
-                        request.form['observacoes'])
+                        request.form['observacoes'],
+                        usuario_id(session['usuario'])
+                    )
                     torra.update_torra()
                     url = '/torra?id=' + request.form['id']
                     return redirect(url, 302)

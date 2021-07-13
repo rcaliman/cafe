@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class='container form_torra'>
+<div class='container form_torra' style='display: flex;'>
+    <div class='div_formulario mt-3'>
     <form action="/update_torra" method='post' id='form-torra'>
-        <section>
+
             {% for valor in torra %}
             <div class='form-floating'>
                 <input type='hidden' name='id' id='id' value={{valor[0]}}>
@@ -45,7 +46,7 @@
                 <label for='peso'>peso</label>
             </div>
             <div class='form-floating'>
-                <input value='{{valor[9]|replace("None","")}}' class='form-control fit_content' type='date' name='data'
+                <input value='{{data}}' class='form-control fit_content' type='date' name='data'
                     id='data'>
                 <label for='data' style='display:block;text-align:right;'>data da torra</label>
             </div>
@@ -55,9 +56,8 @@
                 <label for='data' style='display:block;text-align:right;'>observações</label>
             </div>
             {% endfor %}
-        </section>
-        <section>
-            <table class='table'>
+
+            <table class='table' style='border: 1px steelblue solid;'>
                 <tr>
                     <td>
 
@@ -69,10 +69,11 @@
                 <tr>
                     <td>
 
-                        <div class='form-floating'>
-                            <button type='submit' class='btn btn-secondary w-100'>salvar</button>
+                        <div class='form-floating d-flex'>
+                            <button type='submit' class='btn botao_medio'>salvar</button>
                         </div>
                     </td>
                 </tr>
-        </section>
+
+    </form>
         {% endblock %}

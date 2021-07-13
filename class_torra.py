@@ -206,10 +206,10 @@ def edit_gridform(id):
     input_grid = """
                     <section>
                         <div class='row justify-content-center' style='margin: 1em 0;'>
-                        <div class='col-lg-3 col-md-5 col-sm-5 col-xs-5 bg-dark inputGrid' style='margin: 0 auto; text-align: center;'>
+                        <div class='inputGrid' style='margin: 0 auto; text-align: center;'>                        
                         <div id='inputFormRow'>
                         <div class='tempgrid mt-2'>
-                            <h5 style='color:#198754'>GRID</h5>
+                            <h5 style='color: #e6e6fa'>GRID</h5>
                         </div>
                   """
     cont = 0
@@ -223,7 +223,7 @@ def edit_gridform(id):
     input_grid = input_grid + """
                         </div>
                         <div id='newRow'></div>
-                            <button id='addRow' type='button' class='btn btn-outline-success btn-sm' style='width: 9em;'>
+                            <button id='addRow' type='button' class='btn btn-outline-light btn-sm' style='width: 9em;'>
                               ✚
                             </button>
                         </div>
@@ -236,7 +236,7 @@ def edit_gridform(id):
                         var html = '';
                         tempgrid += 1
                         html += '<div id="inputFormRow">';
-                        html += '<input type="number" step='0.01' class="inputGrid" name="tempgrid' + tempgrid + '" autocomplete="off" style="width:4em">';
+                        html += '<input type="number" step="0.01" class="inputGrid" name="tempgrid' + tempgrid + '" autocomplete="off" style="width:4em">';
                         html += '<button id="removeRow" type="button" title="apaga o campo ' + tempgrid +'" class="btn btn-danger btn-sm" style="width:4em">' + tempgrid + '</button>';
                         html += '</div>';
 

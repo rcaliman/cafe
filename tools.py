@@ -45,9 +45,14 @@ def monta_temp_json(request_form):
     tempgrid = {'tempgrid0':tempgrid0}
     for a, b in dict.items():
         if 'tempgrid' in a:
-            tempgrid[a] = b
+            if not '' in b:
+                tempgrid[a] = b
     return json.dumps(tempgrid)
 
 def json_para_dic(js):
     return json.loads(js)
 
+def inverte_data_query(torra):
+    data = torra[0][9]
+    data = '-'.join(str.split(data,'-')[::-1])
+    return data
