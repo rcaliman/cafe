@@ -16,37 +16,71 @@
                     <thead>
                         <tr>
                             <th>
-                                <a href='cafes?ord=id&asc_desc={{asc_desc}}'>id</a>
+                                <a href='cafes?ord=id&asc_desc={{asc_desc}}'>
+                                    id
+                                </a>
                             </th>
                             <th>
-                                <a href='cafes?ord=descricao&asc_desc={{asc_desc}}'>descrição</a>
+                                <a href='cafes?ord=descricao&asc_desc={{asc_desc}}'>
+                                    descrição
+                                </a>
                             </th>
                             <th>
-                                <a href='cafes?ord=quantidade_comprada&asc_desc={{asc_desc}}'>quant. comprada</a>
+                                <a href='cafes?ord=quantidade_comprada&asc_desc={{asc_desc}}'>
+                                    quant. comprada
+                                </a>
                             </th>
                             <th>
-                                <a href='cafes?ord=data_compra&asc_desc={{asc_desc}}'>data da compra</a>
+                                <a href='cafes?ord=data_compra&asc_desc={{asc_desc}}'>
+                                    data da compra
+                                </a>
                             </th>
                             <th>
-                                <a href='cafes?ord=origem&asc_desc={{asc_desc}}'>origem</a>
+                                <a href='cafes?ord=origem&asc_desc={{asc_desc}}'>
+                                    origem
+                                </a>
                             </th>
-                            <th>editar</th>
+                            <th>
+                                editar
+                            </th>
                         </tr>
                     </thead>
                     <tbody class='table-light'>
                         {% for cafe in cafes %}
                         <tr {% if cafe[5]==0%}class='semestoque' {% endif %}>
-                            <td class='text-end'>{{cafe[0]|replace("None","")}}</td>
-                            <td><a href=# title='{{cafe[1]|replace("None","")}}'
-                                    class='link_info'>{{cafe[1][:20]|replace("None","")}}</a></td>
-                            <td class='text-end'>{{cafe[2]|replace('.',',')|replace('None','')}}</td>
-                            <td class='text-end'>{{cafe[3]|replace("None","")}}</td>
-                            <td><a href=# title='{{cafe[4]|replace("None","")}}' class='link_info'>{{cafe[4][:20]}}</a>
+                            <td class='text-end'>
+                                {{cafe[0]|replace("None","")}}
                             </td>
-                            <td class='text-center' title='editar'><a href="/form_cafe?id={{cafe[0]}}"><button class='btn-sm'>editar</button></a></td>
+                            <td>
+                                <a href=# title='{{cafe[1]|replace("None","")}}' class='link_info'>
+                                    {{cafe[1][:20]|replace("None","")}}
+                                </a>
+                            </td>
+                            <td class='text-end'>
+                                {{cafe[2]|replace('.',',')|replace('None','')}}
+                            </td>
+                            <td class='text-end'>
+                                {{cafe[3]|replace("None","")}}
+                            </td>
+                            <td>
+                                <a href=# title='{{cafe[4]|replace("None","")}}' class='link_info'>
+                                    {{cafe[4][:20]}}
+                                </a>
+                            </td>
+                            <td class='text-center' title='editar'>
+                                <a href="/form_cafe?id={{cafe[0]}}">
+                                    <button class='btn-sm'>
+                                        editar
+                                    </button>
+                                </a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
+                    <tr>
+                        <td colspan=6 class='text-center' style='background-color: #d7d0e8'>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>

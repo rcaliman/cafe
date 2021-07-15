@@ -127,17 +127,9 @@ li:hover{
     text-shadow: 1px 1px 1px #666666;
     text-align: center;
 }
-.sombra{
-    box-shadow: 3px 3px 3px #666666;
-}
-#botao_torras{
-    margin-left: 0px;
-    border-radius: 0 5px 5px 0;
-    display: inline-block;
-}
+
 #torras_ids{
     margin-right: 0px;
-    border-radius: 5px 0 0 5px;
     display: inline-block;
     border-color: #1a76fb;
     color: #1a76fb;
@@ -180,4 +172,4 @@ li > a{
 }
 th > a:after{
     content: '↓'
-  }
+}

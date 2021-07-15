@@ -158,9 +158,9 @@ def html_select_id():
         cursor.execute(_SQL)
         torra_ids = cursor.fetchall()
         select = """<select title='se quiser, selecione a torra que servirá de referencia' 
-                        class='form-select-lg' name='torra_ids' id='torras_ids'><option>guia de torra</option>"""    
+                        class='form-select-lg' name='torra_ids' id='torras_ids'><option>base</option>"""    
         for i in torra_ids:
-            select = select + f"""<option value='{i[0]}'>{i[0]}</option>"""
+            select = select + f"""<option value='{i[0]}'>torra {i[0]}</option>"""
         select = select + """</select>"""
         return select
 
