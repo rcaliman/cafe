@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, session, redirect
-from tools import Login, logado, monta_temp_json, inverte_data_query
+from tools import Login, logado, monta_temp_json, inverte_data_query, data_hoje
 from werkzeug.datastructures import ImmutableMultiDict
 from class_usuario import usuario_id
 from class_torra import Torra, select_torras, select_torra, apagar_torra, edit_gridform, \
@@ -75,6 +75,7 @@ def form_cafe():
                 else:
                     return render_template(
                         'form_cafe.html',
+                        data_hoje = data_hoje(),
                     )
             except Exception:
                 logging.exception('ERRO APP CAFES E TORRRAS')
@@ -209,9 +210,16 @@ def form_torra():
         if logado():
             try:
                 ids = request.form['torra_ids']
+                print(len(ids))
+                try:
+                    torra = select_torra(ids)[0]
+                except:
+                    torra = []
                 return render_template('form_torra.html',
                     select_cafes = select_descricao_cafes(0),
-                    js = js_torra(ids),                      
+                    js = js_torra(ids), 
+                    torra = torra,
+                    data_hoje = data_hoje()                   
                 )
             except Exception:
                 logging.exception('ERRO APP CAFES E TORRRAS')

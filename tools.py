@@ -5,6 +5,7 @@ from flask import session
 from werkzeug.datastructures import ImmutableMultiDict
 import pandas as pd
 import matplotlib.pyplot as plt
+from datetime import date
 
 class UsaBD:
     def __init__(self, config):
@@ -56,3 +57,7 @@ def inverte_data_query(torra):
     data = torra[0][9]
     data = '-'.join(str.split(data,'-')[::-1])
     return data
+
+def data_hoje():
+    tupla_data = x = date.timetuple(date.today())[0:3]
+    return '%02d' % tupla_data[0] + '-' + '%02d' % tupla_data[1] + '-' + '%2d' % tupla_data[2]

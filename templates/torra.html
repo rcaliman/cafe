@@ -2,10 +2,10 @@
 
 {% block body %}
 <section>
-    <div class='container' style='display: flex;'>
+    <div class='container-lg' style='display: flex;'>
         <div class='row' style='margin:0 auto;'>
             <div class='col-lg-6' style='margin:0 auto;'>
-                <table class='table table-light table-hover'>
+                <table class='table table-light table-hover tabela_torra'>
                     {% for valor in torra %}
                     <tr>
                         <td>
@@ -78,7 +78,7 @@
                 </table>
             </div>
             <div class='col-lg-6' style='margin:0 auto;'>
-                <table class='table table-hover table-light'>
+                <table class='table table-hover table-light tabela_torra'>
                     <tr>
                         <th>minuto</th>
                         <th>temperatura</th>
@@ -104,7 +104,7 @@
         <div class='row mb-4' style='border-top: 1px  solid #dfe0e1; border-bottom: 1px solid #dfe0e1;'>
             <div class='col'>
                 <div class="btn-group dropup">
-                    <button type="button" class="btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown"
+                    <button type="button" class="btn btn-lg btn-warning dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         editar
                     </button>
@@ -115,7 +115,7 @@
             </div>
             <div class='col'>
                 <div class="btn-group dropup">
-                    <button type="button" class="btn-sm btn-danger dropdown-toggle" data-bs-toggle="dropdown"
+                    <button type="button" class="btn btn-lg btn-danger dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         apagar
                     </button>

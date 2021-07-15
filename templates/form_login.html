@@ -3,19 +3,21 @@
 {% block body %}
 <section>
     <form name='login' action='/logar' method='post'>
-        <div class="container">
+        <div class="container-lg">
             <div class="row">
                 <div class="col-md-4 offset-md-4">
                     <div class="login-form bg-dark mt-4 p-4">
-                            <div class="col-12">
-                                <input type="text" name="usuario" class="form-control rounded-0 border-0" placeholder="usuario">
-                            </div>
-                            <div class="col-12 mt-2">
-                                <input type="password" name="senha" class="form-control rounded-0 border-0" placeholder="senha">
-                            </div>
-                            <div class="d-grid gap-2 mt-2">
-                                <button class="btn btn-outline-light">entrar</button>
-                            </div>
+                        <div class="col-12">
+                            <input type="text" name="usuario" class="form-control-lg rounded-0 border-0 w-100"
+                                placeholder="usuario">
+                        </div>
+                        <div class="col-12 mt-4">
+                            <input type="password" name="senha" class="form-control-lg rounded-0 border-0 w-100"
+                                placeholder="senha">
+                        </div>
+                        <div class="d-grid gap-2 mt-4">
+                            <button class="btn btn-lg btn-outline-light w-100">entrar</button>
+                        </div>
                     </div>
                 </div>
             </div>

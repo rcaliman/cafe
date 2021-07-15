@@ -2,10 +2,10 @@
 
 {% block body %}
 <section>
-    <div class='container'>
+    <div class='container-lg'>
         <div class='row'>
             <div class='col'>
-                <a class='btn botao_medio' href='/form_cafe'>
+                <a class='btn btn-lg botao_medio mt-3' href='/form_cafe'>
                     inserir novo café
                 </a>
             </div>
@@ -35,13 +35,15 @@
                     </thead>
                     <tbody class='table-light'>
                         {% for cafe in cafes %}
-                        <tr {% if cafe[5] == 0%}class='semestoque'{% endif %}>
+                        <tr {% if cafe[5]==0%}class='semestoque' {% endif %}>
                             <td class='text-end'>{{cafe[0]|replace("None","")}}</td>
-                            <td><a href=# title='{{cafe[1]|replace("None","")}}' class='link_info'>{{cafe[1][:20]|replace("None","")}}</a></td>
+                            <td><a href=# title='{{cafe[1]|replace("None","")}}'
+                                    class='link_info'>{{cafe[1][:20]|replace("None","")}}</a></td>
                             <td class='text-end'>{{cafe[2]|replace('.',',')|replace('None','')}}</td>
                             <td class='text-end'>{{cafe[3]|replace("None","")}}</td>
-                            <td><a href=# title='{{cafe[4]|replace("None","")}}' class='link_info'>{{cafe[4][:20]}}</a></td>
-                            <td class='text-center' title='editar'><a href="/form_cafe?id={{cafe[0]}}">📝</a></td>
+                            <td><a href=# title='{{cafe[4]|replace("None","")}}' class='link_info'>{{cafe[4][:20]}}</a>
+                            </td>
+                            <td class='text-center' title='editar'><a href="/form_cafe?id={{cafe[0]}}"><button class='btn-sm'>editar</button></a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

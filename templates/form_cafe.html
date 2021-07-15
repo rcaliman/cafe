@@ -2,90 +2,93 @@
 
 {% block body %}
 <section>
-    <div class='container cafe' style='display: flex;'>
-        <div class='div_formulario mt-3'>
+    <div class='container-lg' style='display: flex;'>
+        <div class='div_formulario mt-3 vw-100'>
             {% if id %}
             <form method='post' action='update_cafe' class="needs-validation">
                 {% for valor in cafe %}
                 <input type='hidden' name='id' value='{{valor[0]}}'>
-                <div class="form-floating">
-                    <textarea required class='form-control' id='descricao'
+                <div class="border p-3 w-100 mx-auto mt-3">
+                    <label for='descricao' class='form-label'>descrição do café</label>
+                    <textarea required class='form-control-lg w-100' id='descricao'
                         name='descricao'>{{ valor[1] |replace("None","")}}</textarea>
-                    <label for='descricao'>descrição do café</label>
                 </div>
-                <div class="form-floating">
-                    <input required value='{{valor[2]|replace("None","")}}' class='form-control fit_content'
-                        type='number' step='0.01' name='quantidade' id='quantidade'>
-                    <label for='quantidade'>quantidade comprada</label>
+                <div class="border p-3 w-100 mx-auto mt-3 mt-3">
+                    <label for='quantidade' class='form-label'>quantidade comprada</label>
+                    <input required value='{{valor[2]|replace("None","")}}' class='form-control-lg w-100' type='number'
+                        step='0.01' name='quantidade' id='quantidade'>
+
                 </div>
-                <div class="form-floating">
-                    <input required value='{{ valor[3] |replace("None","")}}' class='form-control fit_content'
-                        type='date' name='data_compra' id='data_compra'>
+                <div class="border p-3 w-100 mx-auto mt-3 mt-3">
                     <label for='data_compra'>data da compra </label>
+                    <input required value='{{ valor[3] |replace("None","")}}' class='form-control-lg w-100' type='date'
+                        name='data_compra' id='data_compra'>
+
                 </div>
-                <div class="form-floating">
-                    <input required value='{{ valor[4] |replace("None","")}}' class='form-control' type='text'
-                        name='origem' id='origem'>
+                <div class="border p-3 w-100 mx-auto mt-3 mt-3">
                     <label for='origem'>origem</label>
+                    <input required value='{{ valor[4] |replace("None","")}}' class='form-control-lg w-100' type='text'
+                        name='origem' id='origem'>
+
                 </div>
-                <div class="form-floating border rounded" style='padding: 0.2em 1em;'>
-                    <p style='margin-bottom: 1px; color: steelblue; font-size: 0.9em; opacity: .65;'>em estoque</p>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" {% if valor[5]==1 %} checked {% endif %} type="radio"
-                            name="estoque" id="estoqueRadio1" value="1">
-                        <label class="form-check-label" for="estoqueRadio1">sim</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" {% if valor[5]==0 %} checked {% endif %} type="radio"
-                            name="estoque" id="estoqueRadio2" value="0">
-                        <label class="form-check-label" for="estoqueRadio2">nao</label>
-                    </div>
+                <div class="border p-3 w-100 mt-3 rounded text-center" style='padding: 0.2em 1em;'>
+                    <input class="btn-check" {% if valor[5]==1 %} checked {% endif %} type="radio" name="estoque"
+                        id="estoqueRadio1" autocomplete="off" value="1">
+                    <label class="btn btn-lg btn-outline-success" for="estoqueRadio1">com estoque</label>
+                    <input class="btn-check" {% if valor[5]==0 %} checked {% endif %} type="radio" name="estoque"
+                        id="estoqueRadio2" autocomplete="off" value="0">
+                    <label class="btn btn-lg btn-outline-danger" for="estoqueRadio2">sem estoque</label>
                 </div>
                 {% endfor %}
                 {% else %}
                 <form method='post' action='insere_cafe' class="needs-validation">
-                    <div class="form-floating">
-                        <textarea required class='form-control' id='descricao' name='descricao'></textarea>
+                    <div class="border p-3 w-100 mx-auto mt-3">
                         <label for='descricao'>descrição do café</label>
+                        <textarea required class='form-control-lg w-100' id='descricao' name='descricao'></textarea>
+                        
                     </div>
-                    <div class="form-floating">
-                        <input required class='form-control fit_content' type='number' step='0.01' name='quantidade'
-                            id='quantidade'>
+                    <div class="border p-3 w-100 mx-auto mt-3">
                         <label for='quantidade'>quantidade comprada</label>
+                        <input required class='form-control-lg w-100' type='number' step='0.01' name='quantidade'
+                            id='quantidade'>
+                        
                     </div>
-                    <div class="form-floating">
-                        <input required class='form-control fit_content' type='date' name='data_compra'
-                            id='data_compra'>
+                    <div class="border p-3 w-100 mx-auto mt-3">
                         <label for='data_compra'>data da compra </label>
+                        <input value='{{data_hoje}}' required class='form-control-lg w-100' type='date' name='data_compra'
+                            id='data_compra'>
+                        
                     </div>
-                    <div class="form-floating">
-                        <input required class='form-control' type='text' name='origem' id='origem'>
+                    <div class="border p-3 w-100 mx-auto mt-3">
                         <label for='origem'>origem</label>
+                        <input required class='form-control-lg w-100' type='text' name='origem' id='origem'>
+                        
                     </div>
-                    <div class="form-floating border rounded" style='padding: 0.2em 1em;'>
-                        <p style='margin-bottom: 1px; color: steelblue; font-size: 0.9em; opacity: .65;'>em estoque</p>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" checked type="radio" name="estoque" id="estoqueRadio1"
-                                value="1">
-                            <label class="form-check-label" for="estoqueRadio1">sim</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="estoque" id="estoqueRadio2" value="0">
-                            <label class="form-check-label" for="estoqueRadio2">nao</label>
-                        </div>
+                    <div class="border p-3 w-100 mt-3 rounded text-center" style='padding: 0.2em 1em;'>
+                        <input class="btn-check" checked type="radio" name="estoque"
+                            id="estoqueRadio1" autocomplete="off" value="1">
+                        <label class="btn btn-lg btn-outline-success" for="estoqueRadio1">com estoque</label>
+                        <input class="btn-check" type="radio" name="estoque"
+                            id="estoqueRadio2" autocomplete="off" value="0">
+                        <label class="btn btn-lg btn-outline-danger" for="estoqueRadio2">sem estoque</label>
                     </div>
                     {% endif %}
-                    <button style='margin: 0 auto; display: block;' class='btn btn-primary botao_medio'
-                        type='submit'>salvar</button>
+                    <div class="border p-3 w-100 mt-3 rounded text-center" style='padding: 0.2em 1em;'>
+                        <button style='margin: 0 auto; display: block;' class='btn btn-lg btn-primary botao_medio'
+                            type='submit'>salvar</button>
+                    </div>
                     {% if id %}
-                    <div class="btn-group dropup">
-                        <button style='margin: 0 auto; display: block; margin-bottom: 1em;' type="button"
-                            class="btn-sm btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            apagar
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item danger_hover" href="/apaga_cafe?id={{id}}">apagar</a></li>
-                        </ul>
+                    <div class="border p-3 w-100 mt-3 rounded text-center" style='padding: 0.2em 1em;'>
+                        <div class="btn-group dropup">
+                            <button style='margin: 0 auto; display: block; margin-bottom: 1em;' type="button"
+                                class="btn btn-lg btn-danger dropdown-toggle" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                apagar
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item danger_hover" href="/apaga_cafe?id={{id}}">apagar</a></li>
+                            </ul>
+                        </div>
                     </div>
                     {% endif %}
                 </form>

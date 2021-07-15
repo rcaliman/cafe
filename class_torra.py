@@ -158,7 +158,7 @@ def html_select_id():
         cursor.execute(_SQL)
         torra_ids = cursor.fetchall()
         select = """<select title='se quiser, selecione a torra que servirá de referencia' 
-                        class='form-select' name='torra_ids' id='torras_ids'><option>guia de torra</option>"""    
+                        class='form-select-lg' name='torra_ids' id='torras_ids'><option>guia de torra</option>"""    
         for i in torra_ids:
             select = select + f"""<option value='{i[0]}'>{i[0]}</option>"""
         select = select + """</select>"""
@@ -216,14 +216,14 @@ def edit_gridform(id):
     for a, b in tempgrid.items():
         input_grid = input_grid + f'''
                 <input type="number" step='0.01' id="{a}" class='inputGrid' name="{a}" value="{b[0]}" autocomplete="off" style="width:4em;margin-right: 5px;">
-                <div class="btn btn-danger btn-sm" style="width:4em;cursor:default;opacity:60%">{cont}</div><br>
+                <div class="btn btn-danger btn-md" style="width:5em;cursor:default;opacity:60%">{cont}</div><br>
             '''
         cont += 1
         x = str(cont)
     input_grid = input_grid + """
                         </div>
                         <div id='newRow'></div>
-                            <button id='addRow' type='button' class='btn btn-outline-light btn-sm' style='width: 9em;'>
+                            <button id='addRow' type='button' class='btn btn-lg btn-outline-light btn-lg' style='width: 9em;'>
                               ✚
                             </button>
                         </div>
@@ -237,7 +237,7 @@ def edit_gridform(id):
                         tempgrid += 1
                         html += '<div id="inputFormRow">';
                         html += '<input type="number" step="0.01" class="inputGrid" name="tempgrid' + tempgrid + '" autocomplete="off" style="width:4em">';
-                        html += '<button id="removeRow" type="button" title="apaga o campo ' + tempgrid +'" class="btn btn-danger btn-sm" style="width:4em">' + tempgrid + '</button>';
+                        html += '<button id="removeRow" type="button" title="apaga o campo ' + tempgrid +'" class="btn btn-danger btn-md" style="width:5em">' + tempgrid + '</button>';
                         html += '</div>';
 
                         $('#newRow').append(html);

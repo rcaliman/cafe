@@ -2,13 +2,14 @@
 
 {% block body %}
 <section>
-    <div class='container'>
+    <div class='container-lg'>
         <div class='row'>
             <div class='col'>
-                <form name='inserir' class='sombra' style='background-color:#1a76fb;border-radius: 5px;' method='post' action='/form_torra'>
+                <form name='inserir' class='sombra mt-3' style='background-color:#1a76fb;border-radius: 5px;' method='post'
+                    action='/form_torra'>
                     <div class='d-inline-flex' style='margin-right:0px;'>{{select|safe}}</div>
                     <div class='d-inline-flex' style='margin-left:0px;'>
-                        <button type='submit' id='botao_torras' class='btn btn-primary' href='/form_torra'>
+                        <button type='submit' id='botao_torras' class='btn btn-lg btn-primary' href='/form_torra'>
                             inserir nova torra
                         </button>
                     </div>
@@ -93,11 +94,12 @@
                                 </td>
                                 <td class='text-center'>
                                     <input name='{{torra[0]}}' title='selecione para comparar torras'
-                                        class="form-check-input" type="checkbox" value="{{torra[0]|replace('None','')}}" id="flexCheckDefault">
+                                        class="form-check-input" type="checkbox" value="{{torra[0]|replace('None','')}}"
+                                        id="{{torra[0]}}" style='margin: 0 auto;border:1px solid steelblue;width:1.5em;height:1.5em'>
                                 </td>
                                 <td class='text-center'>
-                                    <a href='/torra?id={{torra[0]|replace("None","")}}'
-                                        title='abrir mais informações sobre a torra'>📂</a>
+                                    <a class='btn btn-sm btn-outline-dark' href='/torra?id={{torra[0]|replace("None","")}}'
+                                        title='abrir mais informações sobre a torra' >abrir</a>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -106,7 +108,7 @@
                         <tr>
                             <td colspan=11 class='text-center' style='background-color: #d7d0e8'>
                                 <button title='selecione as torras que deseja comparar e clique aqui'
-                                    class='sombra btn btn-secondary botao_medio mt-1 mb-1' type='submit'>
+                                    class='sombra btn btn-lg btn-secondary botao_medio mt-1 mb-1' type='submit'>
                                     comparar torras
                                 </button>
                             </td>

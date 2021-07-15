@@ -1,59 +1,67 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class='container form_torra' style='display: flex;'>
+<div class='container-lg form_torra' style='display: flex;'>
     <div class='div_formulario mt-3'>
-    <form action="/update_torra" method='post' id='form-torra'>
+        <form action="/update_torra" method='post' id='form-torra'>
 
             {% for valor in torra %}
-            <div class='form-floating'>
+            <div class='border p-3 w-100 mx-auto mt-3'>
+                <label class='form-label' for='cafe'>descrição do café</label>
                 <input type='hidden' name='id' id='id' value={{valor[0]}}>
                 {{select_cafes|safe}}
-                <label for='cafe'>descrição do café</label>
+                
             </div>
-            <div class='form-floating'>
-                <input value='{{valor[2]|replace("None","")}}' class='form-control fit_content' type='number'
+            <div class='border p-3 w-100 mx-auto mt-3'>
+                <label class='form-label' for='temp_inicial'>temperatura inicial</label>
+                <input value='{{valor[2]|replace("None","")}}' class='form-control-lg w-100' type='number'
                     step='0.01' name='temp_inicial' id='temp_inicial'>
-                <label for='temp_inicial'>temperatura inicial</label>
+                
             </div>
-            <div class='form-floating'>
-                <input value='{{valor[3]|replace("None","")}}' class='form-control fit_content' type='number'
+            <div class='border p-3 w-100 mx-auto mt-3'>
+                <label class='form-label' for='temp_final'>temperatura final</label>
+                <input value='{{valor[3]|replace("None","")}}' class='form-control-lg w-100' type='number'
                     step='0.01' name='temp_final' id='temp_final'>
-                <label for='temp_final'>temperatura final</label>
+                
             </div>
 
-            <div class='form-floating'>
-                <input value='{{valor[4]|replace("None","")}}' class='form-control fit_content' type='number'
+            <div class='border p-3 w-100 mx-auto mt-3'>
+                <label class='form-label' for='piso'>piso</label>
+                <input value='{{valor[4]|replace("None","")}}' class='form-control-lg w-100' type='number'
                     step='0.01' name='piso' id='piso'>
-                <label for='piso'>piso</label>
+                
             </div>
 
-            <div class='form-floating'>
-                <input value='{{valor[6]|replace("None","")}}' class='form-control fit_content' type='number'
+            <div class='border p-3 w-100 mx-auto mt-3'>
+                <label class='form-label' for='fluxo_ar'>fluxo de ar</label>
+                <input value='{{valor[6]|replace("None","")}}' class='form-control-lg w-100' type='number'
                     step='0.01' name='fluxo_ar' id='fluxo_ar'>
-                <label for='fluxo_ar'>fluxo de ar</label>
+                
             </div>
 
-            <div class='form-floating'>
-                <input value='{{valor[7]|replace("None","")}}' class='form-control fit_content' type='number'
+            <div class='border p-3 w-100 mx-auto mt-3'>
+                <label class='form-label' for='velocidade_tambor'>velocidade do tambor</label>
+                <input value='{{valor[7]|replace("None","")}}' class='form-control-lg w-100' type='number'
                     step='0.01' name='velocidade_tambor' id='velocidade_tambor'>
-                <label for='velocidade_tambor'>velocidade do tambor</label>
+                
             </div>
 
-            <div class='form-floating'>
-                <input value='{{valor[8]|replace("None","")}}' class='form-control fit_content' type='number'
+            <div class='border p-3 w-100 mx-auto mt-3'>
+                <label class='form-label' for='peso'>peso</label>
+                <input value='{{valor[8]|replace("None","")}}' class='form-control-lg w-100' type='number'
                     step='0.01' name='peso' id='peso'>
-                <label for='peso'>peso</label>
+                
             </div>
-            <div class='form-floating'>
-                <input value='{{data}}' class='form-control fit_content' type='date' name='data'
-                    id='data'>
-                <label for='data' style='display:block;text-align:right;'>data da torra</label>
+            <div class='border p-3 w-100 mx-auto mt-3'>
+                <label class='form-label' for='data' style='display:block;text-align:right;'>data da torra</label>
+                <input value='{{data}}' class='form-control-lg w-100' type='date' name='data' id='data'>
+                
             </div>
-            <div class='form-floating'>
-                <textarea class='form-control' type='date' name='observacoes'
+            <div class='border p-3 w-100 mx-auto mt-3'>
+                <label for='data' class='form-label' style='display:block;text-align:right;'>observações</label>
+                <textarea class='form-control-lg w-100' type='date' name='observacoes'
                     id='observacoes'>{{valor[10]|replace('None','')}}</textarea>
-                <label for='data' style='display:block;text-align:right;'>observações</label>
+                
             </div>
             {% endfor %}
 
@@ -61,7 +69,7 @@
                 <tr>
                     <td>
 
-                        <div class='container'>
+                        <div class='container-lg'>
                             {{grid_torra|safe}}
                         </div>
                     </td>
@@ -69,11 +77,11 @@
                 <tr>
                     <td>
 
-                        <div class='form-floating d-flex'>
-                            <button type='submit' class='btn botao_medio'>salvar</button>
+                        <div class='border p-3 w-100 mx-auto mt-3 d-flex'>
+                            <button type='submit' class='btn btn-lg botao_medio'>salvar</button>
                         </div>
                     </td>
                 </tr>
 
-    </form>
+        </form>
         {% endblock %}
