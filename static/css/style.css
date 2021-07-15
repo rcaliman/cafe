@@ -44,7 +44,6 @@ button:hover{
 }
 .botao_grande{
     width: 90%;
-    box-shadow: 3px 3px 3px #535353;
     background-color:steelblue;
     color: #fefefe;
 }
@@ -54,7 +53,6 @@ button:hover{
 }
 .botao_medio{
     width: 40%;
-    box-shadow: 3px 3px 3px #535353;
     background-color:steelblue;
     color: #fefefe;
     margin: 0 auto;
@@ -131,8 +129,8 @@ li:hover{
 #torras_ids{
     margin-right: 0px;
     display: inline-block;
-    border-color: #1a76fb;
-    color: #1a76fb;
+    border-color: steelblue;
+    color: steelblue;
     background-color:#fefefe;
 }
 .divGrid{
@@ -172,4 +170,6 @@ li > a{
 }
 th > a:after{
     content: '↓'
+}
+.sombra{
 }

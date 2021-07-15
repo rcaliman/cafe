@@ -206,7 +206,7 @@ def edit_gridform(id):
     input_grid = """
                     <section>
                         <div class='row justify-content-center' style='margin: 1em 0;'>
-                        <div class='inputGrid' style='margin: 0 auto; text-align: center;'>                        
+                        <div class='divGrid' style='margin: 0 auto; text-align: center;'>                        
                         <div id='inputFormRow'>
                         <div class='tempgrid mt-2'>
                             <h5 style='color: #e6e6fa'>GRID</h5>

@@ -8,7 +8,7 @@
                 <form name='inserir' class='sombra' method='post' action='/form_torra'>
                     
                     <div class='d-inline-flex mt-3' style='text-align: left;'>
-                        <button type='submit' id='botao_torras' class='sombra btn btn-lg btn-primary' style='border-radius: 5px 0 0 5px;' href='/form_torra'>
+                        <button type='submit' id='botao_torras' class='btn btn-lg btn-primary' style='border-radius: 5px 0 0 5px; background-color: steelblue;' href='/form_torra'>
                             inserir nova torra
                         </button>{{select|safe}}
                     </div>
@@ -18,7 +18,7 @@
             <div class='col-6 mt-3' style='text-align: right;'>
                 <form name='torras' method='post' action='/compara_torras'>
                     <button title='selecione as torras que deseja comparar e clique aqui'
-                        class='sombra btn btn-lg btn-secondary' type='submit'>
+                        class='btn btn-lg btn-secondary' type='submit'>
                         comparar torras
                     </button>
             </div>
@@ -103,7 +103,7 @@
                                 <input name='{{torra[0]}}' title='selecione para comparar torras'
                                     class="form-check-input" type="checkbox" value="{{torra[0]|replace('None','')}}"
                                     id="{{torra[0]}}"
-                                    style='margin: 0 auto;border:1px solid steelblue;width:1.5em;height:1.5em'>
+                                    style='margin: 0 auto; background-color: gray;border:1px solid black;width:1.5em;height:1.5em'>
                             </td>
                             <td class='text-center'>
                                 <a class='btn btn-sm btn-outline-dark' href='/torra?id={{torra[0]|replace("None","")}}'
