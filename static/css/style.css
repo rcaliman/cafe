@@ -178,3 +178,6 @@ li > a{
     width: 5em;
     opacity: 50%;
 }
+th > a:after{
+    content: '↓'
+  }
