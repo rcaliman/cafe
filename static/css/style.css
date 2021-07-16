@@ -51,13 +51,11 @@ button:hover{
     color: #fefefe;
     background-color:dodgerBlue;
 }
-.botao_medio{
-    width: 40%;
+.botao{
     background-color:steelblue;
     color: #fefefe;
-    margin: 0 auto;
 }
-.botao_medio:hover{
+.botao:hover{
     color: #fefefe;
     background-color:dodgerBlue;
 }
@@ -170,6 +168,4 @@ li > a{
 }
 th > a:after{
     content: '↓'
-}
-.sombra{
 }
