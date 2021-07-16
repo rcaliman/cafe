@@ -16,22 +16,17 @@
 
             </div>
             <div class='border p-3 w-100 mx-auto mt-3'>
-                <label class='form-label' id='label_temp_inicial' for='temp_inicial'>temperatura inicial <em>{{torra[2]}}</em></label>
+                <label class='form-label' for='peso'>peso <em>{{torra[8]}}</em></label>
+                <input class='form-control-lg w-100' type='number' step='0.01' name='peso' id='peso'>
+
+            </div>
+            <div class='border p-3 w-100 mx-auto mt-3'>
+                <label class='form-label' id='label_temp_inicial' for='temp_inicial'>temperatura inicial
+                    <em>{{torra[2]}}</em></label>
                 <input required class='form-control-lg w-100' type='number' step='0.01' name='temp_inicial'
                     id='temp_inicial'>
             </div>
-            <div class='border p-3 w-100 mx-auto mt-3'>
-                <label class='form-label' for='temp_final'>temperatura final <em>{{torra[3]}}</em></label>
-                <input class='form-control-lg w-100' required type='number' step='0.01' name='temp_final'
-                    id='temp_final'>
 
-            </div>
-
-            <div class='border p-3 w-100 mx-auto mt-3'>
-                <label class='form-label' for='piso'>piso <em>{{torra[4]}}</em></label>
-                <input class='form-control-lg w-100' type='number' step='0.01' name='piso' id='piso'>
-
-            </div>
 
             <div class='border p-3 w-100 mx-auto mt-3'>
                 <label class='form-label' for='fluxo_ar'>fluxo de ar <em>{{torra[6]}}</em></label>
@@ -46,15 +41,12 @@
 
             </div>
 
-            <div class='border p-3 w-100 mx-auto mt-3'>
-                <label class='form-label' for='peso'>peso <em>{{torra[8]}}</em></label>
-                <input class='form-control-lg w-100' type='number' step='0.01' name='peso' id='peso'>
 
-            </div>
-            <div class='border p-3 w-100 mx-auto mt-3'>
-                <label class='form-label' for='data'>observações</label>
-                <textarea class='form-control-lg w-100' type='date' name='observacoes' id='observacoes'></textarea>
 
+
+            <div class='border p-3 w-100 mx-auto mt-3'>
+                <label class='form-label' for='piso'>piso <em>{{torra[4]}}</em></label>
+                <input class='form-control-lg w-100' type='number' step='0.01' name='piso' id='piso'>
             </div>
 
             <table class='table' style='border: 1px steelblue solid;'>
@@ -82,15 +74,28 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class='border p-3 w-100 mx-auto mt-3 d-flex'>
-                            <button type='submit' class='btn btn-lg botao_medio'>salvar</button>
-                        </div>
-                    </td>
-                </tr>
+                
             </table>
+            <div class='border p-3 w-100 mx-auto mt-3'>
+                <label class='form-label' for='temp_final'>temperatura final <em>{{torra[3]}}</em></label>
+                <input class='form-control-lg w-100' required type='number' step='0.01' name='temp_final'
+                    id='temp_final'>
 
+            </div>
+            <div class='border p-3 w-100 mx-auto mt-3'>
+                <label class='form-label' for='data'>observações</label>
+                <textarea class='form-control-lg w-100' type='date' name='observacoes' id='observacoes'></textarea>
+
+            </div>
+            <table class='table' style='border: 1px steelblue solid;'>
+            <tr>
+                <td>
+                    <div class='border p-3 w-100 mx-auto mt-3 d-flex'>
+                        <button type='submit' class='btn btn-lg botao_medio'>salvar</button>
+                    </div>
+                </td>
+            </tr>
+            </table>
         </form>
     </div>
 </div>
@@ -119,7 +124,7 @@
 
         $('#newRow').append(html);
         $('html,body').animate({ scrollTop: document.body.scrollHeight }, "fast");
-        $("form").find("input:last").focus();
+        $("form").find(".inputGrid:last").focus();
     });
 
     // remove row

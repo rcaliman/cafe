@@ -154,13 +154,14 @@ def js_torra(ids):
 
 def html_select_id():
     with UsaBD(parametros) as cursor:
-        _SQL = 'select id from torra order by id desc'
+        #_SQL = 'select id from torra order by id desc'
+        _SQL = 'select torra.id, (select cafe.descricao from cafe where cafe.id = torra.id_cafe) from torra order by torra.id desc;'
         cursor.execute(_SQL)
         torra_ids = cursor.fetchall()
         select = """<select title='se quiser, selecione a torra que servirá de referencia' 
-                        class='form-select-lg' name='torra_ids' id='torras_ids'><option>base</option>"""    
+                        class='form-select-lg' name='torra_ids' id='torras_ids'><option>torra base</option>"""    
         for i in torra_ids:
-            select = select + f"""<option value='{i[0]}'>torra {i[0]}</option>"""
+            select = select + f"""<option value='{i[0]}'>{i[0]} - {i[1][:7]}</option>"""
         select = select + """</select>"""
         return select
 
