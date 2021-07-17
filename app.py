@@ -33,6 +33,8 @@ def logar():
     senha = request.form['senha']
     if Login(usuario,senha).confere():
         session['usuario'] = usuario
+        session['cafe_limite'] = 15
+        session['torra_limite'] = 15
         return render_template('inicio.html')
     else:
         return form_login()
@@ -44,6 +46,11 @@ def cafes():
             ord = request.values.get('ord') or 'id'
             asc = request.values.get('asc_desc') or 'desc'
             usuario = usuario_id(session['usuario'])
+            
+            if request.values.get('mostra_cafes') == 'todos':
+                session['cafe_limite'] = 1000000
+            if request.values.get('mostra_cafes') == 'primeiros':
+                session['cafe_limite'] = 15
 
             if request.values.get('asc_desc') == 'asc':
                 asc_desc = 'desc'
@@ -156,10 +163,17 @@ def torras():
                 asc = request.values.get('asc_desc') or 'desc'
                 usuario = usuario_id(session['usuario'])
                 select = html_select_id()
+                
                 if request.values.get('asc_desc') == 'asc':
                     asc_desc = 'desc'
                 else:
                     asc_desc = 'asc'
+                    
+                if request.values.get('mostra_torras') == 'todas':
+                    session['torra_limite'] = 1000000
+                if request.values.get('mostra_torras') == 'primeiras':
+                    session['torra_limite'] = 15
+                    
                 return render_template(
                     'torras.html',
                     torras = select_torras(ord,asc, usuario),

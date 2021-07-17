@@ -2,6 +2,7 @@ from parametros import parametros
 from tools import UsaBD, json_para_dic
 import matplotlib.pyplot as plt
 import json
+from flask import session
 
 class Torra:
     def __init__(self, id=None, cafe=None, temp_inicial=0, temp_final=0, piso=0, temp_json=None,
@@ -97,7 +98,7 @@ def select_torras(ord, asc, usuario):
                 peso,
                 DATE_FORMAT(data_torra,'%d-%m-%Y'),
                 observacoes 
-            from torra where usuario = {usuario} order by {ord} {asc};"""
+            from torra where usuario = {usuario} order by {ord} {asc} limit {session['torra_limite']};"""
         cursor.execute(_SQL)
         torras = cursor.fetchall()
     return torras

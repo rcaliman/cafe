@@ -5,9 +5,21 @@
     <div class='container-lg'>
         <div class='row'>
             <div class='col' style='display: flex; justify-content: start'>
-                <a class='btn btn-lg botao mt-3' href='/form_cafe'>
-                    inserir novo café
-                </a>
+                <div class="col" style="display: flex; justify-content: start;">
+                    <a href="/form_cafe" class="btn btn-lg botao mt-3" style="width:20em">
+                        inserir novo café
+                    </a>
+                </div>
+                <div style="display: flex; justify-content: end; margin: 0 auto;">
+                    <a href="/cafes?mostra_cafes=primeiros" class="btn btn-lg btn-secondary mt-3"
+                        style="width:10em; margin-right: 10px">
+                        primeiros
+                    </a>
+                    <a href="/cafes?mostra_cafes=todos" class="btn btn-lg btn-secondary mt-3" style="width: 10em">
+                        todos
+                    </a>
+                </div>
+
             </div>
         </div>
         <div class='row'>
@@ -73,6 +85,7 @@
                                         editar
                                     </button>
                                 </a>
+
                             </td>
                         </tr>
                         {% endfor %}

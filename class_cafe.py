@@ -1,5 +1,6 @@
 from tools import UsaBD
 from parametros import parametros
+from flask import session
 
 class Cafe:
     def __init__(self, id=None, descricao=None, 
@@ -69,7 +70,7 @@ def select_cafes(ord, asc, usuario):
                 DATE_FORMAT(data_compra,'%d-%m-%Y'),
                 origem,
                 estoque 
-            from cafe where usuario = {usuario} order by {ord} {asc};"""
+            from cafe where usuario = {usuario} order by {ord} {asc} limit {session['cafe_limite']};"""
         cursor.execute(_SQL)
         cafes = cursor.fetchall()
     return cafes
@@ -105,10 +106,10 @@ def select_descricao_cafes(id_cafe):
             cursor.execute(_SQL)
             descricao_cafe_selecionado = cursor.fetchall()
             descricao = tuple(descricao_cafe_selecionado + descricao_cafes)
-            select = """<select required class="form-select-lg w-100" name="cafe" id="cafe">"""
+            select = """<select required class="form-select-lg" name="cafe" id="cafe">"""
         else:
             descricao = tuple(descricao_cafes)
-            select = """<select required class="form-select-lg w-100" name="cafe" id="cafe"><option>selecione um café</option>"""
+            select = """<select required class="form-select-lg" name="cafe" id="cafe"><option>selecione um café</option>"""
         
         input = ''
         for cafe in descricao:
