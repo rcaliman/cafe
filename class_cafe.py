@@ -106,10 +106,10 @@ def select_descricao_cafes(id_cafe):
             cursor.execute(_SQL)
             descricao_cafe_selecionado = cursor.fetchall()
             descricao = tuple(descricao_cafe_selecionado + descricao_cafes)
-            select = """<select required class="form-select-lg" name="cafe" id="cafe">"""
+            select = """<select required class="form-select-lg w-100" name="cafe" id="cafe">"""
         else:
             descricao = tuple(descricao_cafes)
-            select = """<select required class="form-select-lg" name="cafe" id="cafe"><option>selecione um café</option>"""
+            select = """<select required class="form-select-lg w-100" name="cafe" id="cafe"><option>selecione um café</option>"""
         
         input = ''
         for cafe in descricao:

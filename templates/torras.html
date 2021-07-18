@@ -3,41 +3,42 @@
 {% block body %}
 <section>
     <div class='container-lg'>
-        <div class='row mt-3' style='display: flex; justify-content: space-between'>
-            <form name='inserir' class='sombra' style='width: fit-content;' method='post' action='/form_torra'>
-                <div class='col-4'>
-                    <div class='d-inline-flex' style='text-align: left; width:25em'>
+
+            <div style='display: flex; justify-content:space-between; flex-wrap:wrap; margin-top: 1em;'>
+                <div sytle='display: flex; border: green 1px solid;'>
+                    <form name='inserir' class='sombra' style='display: flex' method='post' action='/form_torra'>
                         <button type='submit' id='botao_torras' class='btn btn-lg btn-primary'
                             style='border-radius: 5px 0 0 5px; background-color: steelblue;' href='/form_torra'>
                             inserir nova torra
                         </button>{{select|safe}}
+                    </form>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; flex-wrap:wrap;">
+                    <div style="display: flex;">
+                        <a href="/torras?mostra_torras=primeiras">
+                            <button title='mostra apenas os primeiros registros'
+                                class='btn btn-lg btn-secondary' style='width:7em; margin: 0 3px'>
+                                primeiras
+                            </button>
+                        </a>
+                        <a href="/torras?mostra_torras=todas">
+                            <button title='mostra todos os registros'
+                                class='btn btn-lg btn-secondary' style='width:7em'>
+                                todas
+                            </button>
+                        </a>
+                    </div>
+                    <div style="display: flex;">
+                        <form name='torras' method='post' action='/compara_torras'>
+                            <button title='selecione as torras que deseja comparar e clique aqui'
+                                class='btn btn-lg btn-success' style='width: 15em; margin-left: 5px;' type='submit'>
+                                comparar
+                            </button>
                     </div>
                 </div>
-            </form>
-            <div style="width: fit-content; display: flex">
-                <div class='col-4' style="display: flex; justify-content: end; width: fit-content">
-                    <a href="/torras?mostra_torras=primeiras" style='margin: 0 5px 0 0'>
-                        <button title='selecione as torras que deseja comparar e clique aqui'
-                            class='btn btn-lg btn-secondary'>
-                            primeiras
-                        </button>
-                    </a>
-                    <a href="/torras?mostra_torras=todas" style='margin: 0 10px 0 0'>
-                        <button title='selecione as torras que deseja comparar e clique aqui'
-                            class='btn btn-lg btn-secondary'>
-                            todas
-                        </button>
-                    </a>
-                </div>
-                <div class='col-4' style="display: flex; justify-content: end; width: fit-content">
-                    <form name='torras' method='post' action='/compara_torras'>
-                        <button title='selecione as torras que deseja comparar e clique aqui'
-                            class='btn btn-lg btn-success' type='submit'>
-                            comparar torras
-                        </button>
-                </div>
             </div>
-        </div>
+        
         <div class='row'>
             <div class='col'>
                 <table class='table table-hover'>

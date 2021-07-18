@@ -3,23 +3,25 @@
 {% block body %}
 <section>
     <div class='container-lg'>
-        <div class='row'>
-            <div class='col' style='display: flex; justify-content: start'>
-                <div class="col" style="display: flex; justify-content: start;">
-                    <a href="/form_cafe" class="btn btn-lg botao mt-3" style="width:20em">
+        <div style='display: flex; margin-top: 1em; flex-wrap:wrap; justify-content: space-between;'>
+            <div style='display: flex;'>
+                <a href="/form_cafe">
+                    <button class='btn btn-lg botao' style='width:15em;'>
                         inserir novo café
-                    </a>
-                </div>
-                <div style="display: flex; justify-content: end; margin: 0 auto;">
-                    <a href="/cafes?mostra_cafes=primeiros" class="btn btn-lg btn-secondary mt-3"
-                        style="width:10em; margin-right: 10px">
+                    </button>
+                </a>
+            </div>
+            <div style='display: flex; flex-wrap: wrap;'>
+                <a href="/cafes?mostra_cafes=primeiros">
+                    <button class='btn btn-lg btn-secondary' title='mostra apenas os primeiros registros' style='margin-right: 5px; width: 7em;'>
                         primeiros
-                    </a>
-                    <a href="/cafes?mostra_cafes=todos" class="btn btn-lg btn-secondary mt-3" style="width: 10em">
+                    </button>
+                </a>
+                <a href="/cafes?mostra_cafes=todos">
+                    <button class='btn btn-lg btn-secondary' title='mostra todos os registros' style='width: 7em;'>
                         todos
-                    </a>
-                </div>
-
+                    </button>
+                </a>
             </div>
         </div>
         <div class='row'>
