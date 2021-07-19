@@ -29,8 +29,8 @@ def form_login():
 
 @app.route('/logar', methods=['POST']) # autenticar usuario e setar sessão
 def logar():
-    usuario = request.form['usuario']
-    senha = request.form['senha']
+    usuario = request.form['usuario'].strip()
+    senha = request.form['senha'].strip()
     if Login(usuario,senha).confere():
         session['usuario'] = usuario
         session['cafe_limite'] = 15
